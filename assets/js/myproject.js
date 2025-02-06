@@ -61,39 +61,51 @@ function renderProject() {
 
   for (let i = 0; i < projects.length; i++) {
     projectContainerElement.innerHTML += `
-            <article id="project" class="project">
-          <img src="${projects[i].image}" alt="" />
-          <h4>${projects[i].name}</h4>
-          <p class="relative-time">durasi : ${getRelativeTime(projects[i].relativeTime)} bulan</p>
-          <p>${projects[i].description}</p>
-          <ul class="skills">
-            <img src="/personal-web/assets/img/nodejs.png" alt="" />
-            <img src="/personal-web/assets/img/react.png" alt="" />
-            <img src="/personal-web/assets/img/express.png" alt="" />
-          </ul>
-          <ul class="button2">
-            <button class="edit" id="edit">edit</button>
-            <button class="delete" id="delete" onclick="deleteProject(${i})">delete</button>
-          </ul>
+        <article id="project" class="project">
+          <div>
+            <img src="${projects[i].image}" alt="" />
+            <h4>${projects[i].name}</h4>
+            <p class="relative-time">durasi : ${getRelativeTime(projects[i].relativeTime)} bulan</p>
+            <p>${projects[i].description}</p>
+          </div>
+          
+          
+          <div>
+            <ul class="skills">
+              <img src="/personal-web/assets/img/nodejs.png" alt="" />
+              <img src="/personal-web/assets/img/react.png" alt="" />
+              <img src="/personal-web/assets/img/express.png" alt="" />
+            </ul>
+            <ul class="button2">
+              <button class="edit" id="edit">edit</button>
+              <button class="delete" id="delete" onclick="deleteProject(${i})">delete</button>
+            </ul>
+          </div>
         </article>
         `;
   }
 }
 function firstProject() {
   return `
-              <article id="project" class="project">
-              <img src="/personal-web/assets/img/image1.jpg" alt="" />
-              <h4>Dumbways Mobile App - 2021</h4>
-              <p class="relative-time">durasi : 3 bulan</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, atque.</p>
-              <ul class="skills">
-                <img src="/personal-web/assets/img/nodejs.png" alt="" />
-                <img src="/personal-web/assets/img/react.png" alt="" />
-                <img src="/personal-web/assets/img/express.png" alt="" />
-              </ul>
-              <ul class="button2">
-                <button class="edit" id="edit">edit</button>
-                <button class="delete" id="delete">delete</button>
+        <article id="project" class="project">
+          <div>
+            <img src="/personal-web/assets/img/image1.jpg" alt="" />
+            <h4>Dumbways Mobile App - 2021</h4>
+            <p class="relative-time">durasi : 3 bulan</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, atque.</p>
+          </div>
+          
+          <div>
+            <ul class="skills">
+              <img src="/personal-web/assets/img/nodejs.png" alt="" />
+              <img src="/personal-web/assets/img/react.png" alt="" />
+              <img src="/personal-web/assets/img/express.png" alt="" />
+            </ul>
+            <ul ul class="button2">
+              <button class="edit" id="edit">edit</button>
+              <button class="delete" id="delete" onclick="deleteProject()">delete</button>
+            </ul>
+          </div>
               </ul>
             </article>
           `;

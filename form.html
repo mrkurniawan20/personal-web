@@ -3,18 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Page</title>
-    <link rel="stylesheet" href="assets/css/form.css" />
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/personal-web/assets/img/icon.png" />
   </head>
   <body>
+    <!-- NAV -->
     <nav>
       <ul>
         <img src="/personal-web/assets/img/dumbways.png" alt="Logo Dumbways" width="7%" />
-        <li class="active"><a href="">Home</a></li>
-        <li><a href="">My Project</a></li>
+        <li><a href="">Home</a></li>
+        <li><a href="myproject.html">My Project</a></li>
+        <div class="dropdown">
+          <a href="#" class="other">Others ⮟</a>
+          <div class="content">
+            <a href="blog.html">Blog</a>
+            <a href="testimonial.html">Testimonial</a>
+          </div>
+        </div>
       </ul>
-      <!-- <a class="contactme" target="_blank" href="https://shorturl.at/SFVoV">Contact Me</a> -->
+      <!-- <a class="contactme" target="_blank" href="form.html" >Contact Me</a> -->
     </nav>
+    <!-- NAV -->
     <h1>GET IN TOUCH</h1>
     <form class="contact-form" action="" onsubmit="form(event)">
       <div class="form-field">
@@ -41,7 +51,9 @@
         <label for="message">Your Message</label>
         <textarea name="message" id="message" rows="5"></textarea>
       </div>
-      <button type="submit">submit</button>
+      <div class="button">
+        <button class="submit-form" type="submit">submit</button>
+      </div>
     </form>
     <script src="assets/js/form.js"></script>
   </body>

@@ -3,19 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/personal-web/assets/css/myproject.css" />
+    <title>My Project</title>
+    <link rel="stylesheet" href="/personal-web/assets/css/style.css " />
+    <link rel="icon" type="image/x-icon" href="/personal-web/assets/img/icon.png" />
   </head>
   <body>
+    <!-- NAV -->
     <nav>
       <ul>
         <img src="/personal-web/assets/img/dumbways.png" alt="Logo Dumbways" width="7%" />
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="">My Project</a></li>
-        <li><a href="blog.html">Blog</a></li>
+        <li><a href="">Home</a></li>
+        <li><a class="active" href="myproject.html">My Project</a></li>
+        <div class="dropdown">
+          <a href="#" class="other">Others ⮟</a>
+          <div class="content">
+            <a href="blog.html">Blog</a>
+            <a href="testimonial.html">Testimonial</a>
+          </div>
+        </div>
       </ul>
-      <a class="contactme" target="_blank" href="https://shorturl.at/SFVoV">Contact Me</a>
+      <a class="contactme" target="_blank" href="form.html">Contact Me</a>
     </nav>
+    <!-- NAV -->
     <h1>Add My Project</h1>
     <!-- FORM -->
     <form action="" onsubmit="addProject(event)">

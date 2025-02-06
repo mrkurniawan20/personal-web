@@ -44,7 +44,7 @@ function renderBlog() {
                     <h2>${blogs[index].title}</h2>
                     <p class='datetime'>${formatDateToWIB()} | ${blogs[index].author}</p>
                     <p>${blogs[index].content}</p>
-                    <p class='relative-time'>${getRelativeTime(blogs[index].postedAt)}</p>
+                    <p class='relative-time-blog'>${getRelativeTime(blogs[index].postedAt)}</p>
                 </div>
             </article>
         `;
@@ -67,7 +67,7 @@ function firstBlogContent() {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, inventore? Similique atque aliquid veritatis pariatur repellendus. Magni illo autem harum molestiae fuga hic quas facere possimus dolorum dolor? Eligendi, quod
             dolores cumque placeat blanditiis ratione. Omnis necessitatibus excepturi deleniti? Pariatur excepturi quaerat magni! Maxime optio possimus eaque atque, corporis laudantium!
           </p>
-          <p class="relative-time">1 day ago</p>
+          <p class="relative-time-blog">1 day ago</p>
         </div>
       </article>
     `;
