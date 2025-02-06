@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/personal-web/assets/css/blog.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <img src="/personal-web/assets/img/dumbways.png" alt="Logo Dumbways" width="7%" />
+        <li><a href="index.html">Home</a></li>
+        <li><a href="myproject.html">My Project</a></li>
+        <li class="active"><a href="">Blog</a></li>
+      </ul>
+      <a class="contactme" target="_blank" href="https://shorturl.at/SFVoV">Contact Me</a>
+    </nav>
+    <h1>Create Post Blog</h1>
+    <!-- FORM -->
+    <form action="" onsubmit="addBlog(event)">
+      <div class="form-field">
+        <label for="title">Title</label>
+        <input type="text" id="title" required />
+      </div>
+      <div class="form-field">
+        <label for="content">Your Blog Content</label>
+        <textarea name="content" id="content" rows="5"></textarea>
+      </div>
+      <div class="form-field">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" />
+      </div>
+      <div class="button">
+        <button class="submit" type="submit">submit</button>
+      </div>
+    </form>
+
+    <!-- BLOG LIST -->
+    <hr />
+    <section id="blogList" class="blogList">
+      <article class="blog-item">
+        <div class="blog-image">
+          <img src="/personal-web/assets/img/cars.jpg" width="100%" alt="" />
+        </div>
+        <div class="blog-article">
+          <div class="blog-item-button">
+            <button class="edit">Edit Blog</button>
+            <button class="push">Push Blog</button>
+          </div>
+          <h2>Pasar Coding Indonesia</h2>
+          <p class="datetime">30 Jan 2025 11:45 | Muhammad Rafli Kurniawan</p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, inventore? Similique atque aliquid veritatis pariatur repellendus. Magni illo autem harum molestiae fuga hic quas facere possimus dolorum dolor? Eligendi, quod
+            dolores cumque placeat blanditiis ratione. Omnis necessitatibus excepturi deleniti? Pariatur excepturi quaerat magni! Maxime optio possimus eaque atque, corporis laudantium!
+          </p>
+          <p class="relative-time">1 day ago</p>
+        </div>
+      </article>
+    </section>
+    <script src="/personal-web/assets/js/blog.js"></script>
+  </body>
+</html>

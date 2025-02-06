@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/personal-web/assets/css/myproject.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <img src="/personal-web/assets/img/dumbways.png" alt="Logo Dumbways" width="7%" />
+        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="">My Project</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+      <a class="contactme" target="_blank" href="https://shorturl.at/SFVoV">Contact Me</a>
+    </nav>
+    <h1>Add My Project</h1>
+    <!-- FORM -->
+    <form action="" onsubmit="addProject(event)">
+      <div class="form-field">
+        <label for="name">Project Name</label>
+        <input type="text" id="name" required />
+      </div>
+
+      <div class="form-date">
+        <div class="start">
+          <label for="start">Start Date</label>
+          <input type="date" id="start" required />
+        </div>
+        <div class="end">
+          <label for="end">End Date</label>
+          <input type="date" id="end" required />
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" rows="5"></textarea>
+      </div>
+      <div class="form-field-tech">
+        <label for="technologies">Technologies</label>
+        <div class="grid-container">
+          <div class="grid">
+            <input type="checkbox" id="nodejs" value="nodejs" name="nodejs" />
+            <label for="nodejs">Node JS</label>
+          </div>
+          <div class="grid">
+            <input type="checkbox" id="nextjs" value="nextjs" name="nextjs" />
+            <label for="nextjs">Next JS</label>
+          </div>
+          <div class="grid">
+            <input type="checkbox" id="reacjs" value="reacjs" name="reacjs" />
+            <label for="reacjs">React JS</label>
+          </div>
+          <div class="grid">
+            <input type="checkbox" id="typescript" value="typescript" name="typescript" />
+            <label for="typescript">TypeScript</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" />
+      </div>
+      <div class="button">
+        <button class="submit" type="submit">submit</button>
+      </div>
+    </form>
+
+    <!-- BLOG LIST -->
+    <div class="project-list">
+      <h1>My Project</h1>
+      <section class="project-container" id="project-container">
+        <article id="project" class="project">
+          <img src="/personal-web/assets/img/image1.jpg" alt="" />
+          <h4>Dumbways Mobile App - 2021</h4>
+          <p class="relative-time">durasi : 3 bulan</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, atque.</p>
+          <ul class="skills">
+            <img src="/personal-web/assets/img/nodejs.png" alt="" />
+            <img src="/personal-web/assets/img/react.png" alt="" />
+            <img src="/personal-web/assets/img/express.png" alt="" />
+          </ul>
+          <ul class="button2">
+            <button class="edit" id="edit">edit</button>
+            <button class="delete" id="delete" onclick="deleteProject()">delete</button>
+          </ul>
+        </article>
+      </section>
+    </div>
+
+    <script src="/personal-web/assets/js/myproject.js"></script>
+  </body>
+</html>
