@@ -1,0 +1,23 @@
+{
+  "name": "personal-web",
+  "version": "1.0.0",
+  "description": "My First Personal Web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkurniawan20/personal-web.git"
+  },
+  "author": "Rafli Kurniawan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrkurniawan20/personal-web/issues"
+  },
+  "homepage": "https://github.com/mrkurniawan20/personal-web#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

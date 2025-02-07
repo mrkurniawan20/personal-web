@@ -85,7 +85,7 @@ nav li a,
 }
 
 /* MAIN CONTENT */
-.container {
+.main-container {
   width: 85%;
   height: 85%;
   background-color: var(--secondary-color);
