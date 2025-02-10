@@ -71,14 +71,14 @@ button {
   gap: 10px;
 }
 .testimonial-list {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   width: 90%;
   margin: 20px auto;
   gap: 10px;
 }
-.testimonials {
-  width: 30%;
+.testimonial-list article {
+  width: 100%;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid grey;
