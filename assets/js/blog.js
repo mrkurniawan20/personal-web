@@ -54,7 +54,7 @@ function firstBlogContent() {
   return `
         <article class="blog-item">
         <div class="blog-image">
-          <img src="/personal-web/assets/img/cars.jpg" width="100%" alt="" />
+          <img src="/img/cars.jpg" width="100%" alt="" />
         </div>
         <div class="blog-article">
           <div class="blog-item-button">
