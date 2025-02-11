@@ -1,4 +1,4 @@
-<html lang='en'>
+{{!-- <html lang='en'>
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -23,7 +23,9 @@
       </ul>
       <a class='contactme' target='_blank' href='form'>Contact Me</a>
     </nav>
-    <!-- NAV -->
+    <!-- NAV --> --}}
+
+    {{#>layout}}
     <h1>Add My Project</h1>
     <!-- FORM -->
     <form action='' onsubmit='addProject(event)'>
@@ -99,5 +101,4 @@
     </div>
 
     <script src='js/myproject.js'></script>
-  </body>
-</html>
+{{/layout}}
