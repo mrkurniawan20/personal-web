@@ -90,35 +90,35 @@ function formatDateToWIB(date) {
 
 function getRelativeTime(postTime) {
   let now = new Date();
-  console.log('Waktu Sekarang : ', now);
-  console.log('Waktu User Post : ', postTime);
+  // console.log('Waktu Sekarang : ', now);
+  // console.log('Waktu User Post : ', postTime);
 
   let diffTime = now - postTime;
-  console.log('selisih waktu : ', diffTime);
+  // console.log('selisih waktu : ', diffTime);
 
   let diffInSec = Math.floor((now - postTime) / 1000);
-  console.log('selisih detik : ', diffInSec);
+  // console.log('selisih detik : ', diffInSec);
   if (diffInSec < 60) {
     // return `${diffInSec} seconds ago`;
     return `${diffInSec} second${diffInSec === 1 ? '' : 's'} ago`;
   }
 
   let diffInMin = Math.floor(diffInSec / 60);
-  console.log('selisih menit ', diffInMin);
+  // console.log('selisih menit ', diffInMin);
   if (diffInMin < 60) {
     // return `${diffInMin} minutes ago`;
     return `${diffInMin} minute${diffInMin === 1 ? '' : 's'} ago`;
   }
 
   let diffInHour = Math.floor(diffInMin / 60);
-  console.log('selisih jam ', diffInHour);
+  // console.log('selisih jam ', diffInHour);
   if (diffInHour < 24) {
     // return `${diffInHour} hours ago`;
     return `${diffInHour} hour${diffInHour === 1 ? '' : 's'} ago`;
   }
 
   let diffInDay = Math.floor(diffInHour / 24);
-  console.log('selisih hari', diffInDay);
+  // console.log('selisih hari', diffInDay);
   if (diffInDay < 30) {
     // return `${diffInDay} days ago`;
     return `${diffInDay} day${diffInDay === 1 ? '' : 's'} ago`;

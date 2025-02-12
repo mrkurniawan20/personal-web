@@ -1,0 +1,34 @@
+{{!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/css/blog-detail.css" />
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <img src="assets/img/dumbways.png" alt="Logo Dumbways" width="7%" />
+      <li class="active"><a href="">Home</a></li>
+      <li><a href="">My Project</a></li>
+    </ul>
+    <!-- <a class="contactme" target="_blank" href="https://shorturl.at/SFVoV">Contact Me</a> -->
+  </nav> --}}
+  {{#>layout}}
+  <section>
+    <h1>{{blog.title}}</h1>
+    <p>{{formatDateToWIB blog.postedAt}} | {{blog.author}}</p>
+    <img src="{{blog.image}}" alt="" width="50%" />
+    <p>
+      {{blog.content}}
+    </p>
+  </section>
+  {{/layout}}
+  {{!--
+</body>
+
+</html> --}}

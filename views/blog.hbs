@@ -74,10 +74,15 @@
       </div>
       <div class='blog-article'>
         <div class='blog-item-button'>
-          <button class='edit'>Edit Blog</button>
-          <button class='push'>Push Blog</button>
+          <a href="/editblog/{{@index}}  " action="/blog-edit/{{@index}}" class='edit'>Edit Blog</a>
+          <form style="display:inline" action="/blog/{{@index}}?_method=DELETE" method="post">
+            <button onclick="return confirm('Are you sure you want to delete?')" class='delete' type="submit">Delete
+              Blog</button>
+          </form>
         </div>
-        <h2>{{this.title}}</h2>
+        <a href="/blog/{{@index}}">
+          <h2>{{this.title}}</h2>
+        </a>
         <p class='datetime'>{{formatDateToWIB this.postedAt}} | {{this.author}}</p>
         <p>
           {{this.content}}
