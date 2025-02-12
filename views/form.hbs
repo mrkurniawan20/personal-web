@@ -1,62 +1,66 @@
 {{#>layout}}
 
 {{!-- <html lang='en'>
-  <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>Contact Form</title>
-    <link rel='stylesheet' href='{{cssPath}}' />
-    <link rel='icon' type='image/x-icon' href='{{iconPath}}' />
-  </head>
-  <body>
-    <!-- NAV -->
-    <nav>
-      <ul>
-        <img src='img/dumbways.png' alt='Logo Dumbways' width='7%' />
-        <li><a href=''>Home</a></li>
-        <li><a href='myproject'>My Project</a></li>
-        <div class='dropdown'>
-          <a href='#' class='other'>Others ⮟</a>
-          <div class='content'>
-            <a href='blog'>Blog</a>
-            <a href='testimonial'>Testimonial</a>
-          </div>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Contact Form</title>
+  <link rel='stylesheet' href='{{cssPath}}' />
+  <link rel='icon' type='image/x-icon' href='{{iconPath}}' />
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <img src='img/dumbways.png' alt='Logo Dumbways' width='7%' />
+      <li><a href=''>Home</a></li>
+      <li><a href='myproject'>My Project</a></li>
+      <div class='dropdown'>
+        <a href='#' class='other'>Others ⮟</a>
+        <div class='content'>
+          <a href='blog'>Blog</a>
+          <a href='testimonial'>Testimonial</a>
         </div>
-      </ul>
-      <!-- <a class="contactme" target="_blank" href="form" >Contact Me</a> -->
-    </nav>
-    <!-- NAV --> --}}
-    <h1>GET IN TOUCH</h1>
-    <form class='contact-form' action='' onsubmit='form(event)'>
-      <div class='form-field'>
-        <label for='name'>Name</label>
-        <input type='text' id='name' required />
       </div>
-      <div class='form-field'>
-        <label for='email'>Email</label>
-        <input type='email' id='email' required />
-      </div>
-      <div class='form-field'>
-        <label for='phoneno'>Phone Number</label>
-        <input type='text' id='phoneno' required />
-      </div>
-      <div class='form-field'>
-        <label for='subject'>Subject</label>
-        <select name='subject' id='subject' required>
-          <option value=''>Select your subject!</option>
-          <option value='frontend'>Frontend</option>
-          <option value='backend'>Backend</option>
-        </select>
-      </div>
-      <div class='form-field'>
-        <label for='message'>Your Message</label>
-        <textarea name='message' id='message' rows='5'></textarea>
-      </div>
-      <div class='button'>
-        <button class='submit-form' type='submit'>submit</button>
-      </div>
-    </form>
-    <script src='js/form.js'></script>
-  {{!-- </body>
+    </ul>
+    <!-- <a class="contactme" target="_blank" href="form" >Contact Me</a> -->
+  </nav>
+  <!-- NAV --> --}}
+  <h1>GET IN TOUCH</h1>
+  <form class='contact-form' action='' onsubmit='form(event)'>
+    <div class='form-field'>
+      <label for='name'>Name</label>
+      <input type='text' id='name' required />
+    </div>
+    <div class='form-field'>
+      <label for='email'>Email</label>
+      <input type='email' id='email' required />
+    </div>
+    <div class='form-field'>
+      <label for='phoneno'>Phone Number</label>
+      <input type='text' id='phoneno' required />
+    </div>
+    <div class='form-field'>
+      <label for='subject'>Subject</label>
+      <select name='subject' id='subject' required>
+        <option value=''>Select your subject!</option>
+        <option value='frontend'>Frontend</option>
+        <option value='backend'>Backend</option>
+      </select>
+    </div>
+    <div class='form-field'>
+      <label for='message'>Your Message</label>
+      <textarea name='message' id='message' rows='5'></textarea>
+    </div>
+    <div class='button'>
+      <button class='submit-form' type='submit'>submit</button>
+    </div>
+  </form>
+  <script src='js/form.js'></script>
+  {{!--
+</body>
+
 </html> --}}
 {{/layout}}
