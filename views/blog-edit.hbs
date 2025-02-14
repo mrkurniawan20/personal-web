@@ -1,7 +1,7 @@
 {{#>layout}}
 <h1>Edit Blog</h1>
 <!-- FORM -->
-<form action="/blog-update/{{index}}?_method=PATCH" method="post">
+<form action="/blog-update/{{blog.id}}?_method=PATCH" method="post">
   <div class='form-field'>
     <label for='title'>Title</label>
     <input name="title" type='text' id='title' value='{{blog.title}}' required />

@@ -6,6 +6,7 @@ const icon = {
 
 const { Sequelize, QueryTypes } = require('sequelize');
 const config = require('../config/config.json');
+const { Query } = require('pg');
 const sequelize = new Sequelize(config.development);
 
 let blogs = [];
@@ -41,7 +42,7 @@ function renderProject(req, res) {
 
 async function renderBlog(req, res) {
   // console.log(blogs); //console log di terminal server buat liat array blogs nya
-  const blogs = await sequelize.query('SELECT * FROM public."Blogs"', {
+  const blogs = await sequelize.query('SELECT * FROM "Blogs"', {
     type: QueryTypes.SELECT,
   });
   console.log(blogs);
@@ -61,60 +62,82 @@ function renderCreateBlog(req, res) {
   });
 }
 
-function createBlog(req, res) {
+async function createBlog(req, res) {
   const { title, content } = req.body; //ngambil title sama content dari body, essentially "title = req.body.title"
 
   let image = 'https://i.redd.it/show-me-your-silly-cats-v0-wplu39sp6l1d1.jpg?width=4032&format=pjpg&auto=webp&s=9970c7152419d80629bc8a7e94ea556b9779f833';
 
-  let newBlog = {
-    title: title,
-    content: content,
-    image: image,
-    author: 'Rafli',
-    postedAt: new Date(),
-  }; //newBlog ambil dari isi
-  blogs.push(newBlog); //method push buat masukin newBlog ke array blogs
+  let query = `INSERT INTO "Blogs" (title, content, image)
+              VALUES('${title}','${content}','${image}')
+  `;
+
+  const newBlog = await sequelize.query(query, {
+    type: QueryTypes.INSERT,
+  });
+
+  // let newBlog = {
+  //   title: title,
+  //   content: content,
+  //   image: image,
+  //   author: 'Rafli',
+  //   postedAt: new Date(),
+  // }; //newBlog ambil dari isi
+  // blogs.push(newBlog); //method push buat masukin newBlog ke array blogs
   res.redirect('/blog'); //redirect, ke url /blog
 }
 
-function renderBlogDetail(req, res) {
+async function renderBlogDetail(req, res) {
   const id = req.params.id; //params yang /:id di blog
-  const chosenBlog = blogs[id]; //chosenBlog ngambil id dari blogs, misal index 0 = blog[0]
+  const query = `SELECT * FROM "Blogs" WHERE id = ${id}`;
+  const chosenBlog = await sequelize.query(query, { type: QueryTypes.SELECT });
+  // const chosenBlog = blogs[id]; //chosenBlog ngambil id dari blogs, misal index 0 = blog[0]
   res.render('blog-detail', {
-    blog: chosenBlog, //nampilin blog
+    blog: chosenBlog[0], //nampilin blog
     title: 'Blog Details',
     currentPage: 'blog',
     ...icon,
   });
 }
 
-function deleteBlog(req, res) {
+async function deleteBlog(req, res) {
   const id = req.params.id; //params yang /:id di blog
-  blogs.splice(id, 1); //method splice, id = index nya, 1 = berapa item yang didelete
+  // const chosenBlog = blogs[id]
+  // console.log(chosenBlog)
+  // blogs.splice(id, 1); //method splice, id = index nya, 1 = berapa item yang didelete
+  const query = `DELETE FROM "Blogs" WHERE id = ${id} `;
+  const deleteResult = await sequelize.query(query, { type: QueryTypes.DELETE });
   res.redirect('/blog');
 }
 
-function updateBlog(req, res) {
+async function updateBlog(req, res) {
   const id = req.params.id; //params yang /:id di blog
   const { title, content } = req.body; //ngambil title sama content dari body, essentially "title = req.body.title"
-  let image = 'https://i.redd.it/show-me-your-silly-cats-v0-wplu39sp6l1d1.jpg?width=4032&format=pjpg&auto=webp&s=9970c7152419d80629bc8a7e94ea556b9779f833';
-  let updatedBlog = {
-    title: title,
-    content: content,
-    image: image,
-    author: 'Rafli',
-    postedAt: new Date(),
-  };
-  blogs[id] = updatedBlog; // blogs[id] atau blog yang index nya lagi dibuka diupdate dengan object updatedBlog
+  // let image = 'https://i.redd.it/show-me-your-silly-cats-v0-wplu39sp6l1d1.jpg?width=4032&format=pjpg&auto=webp&s=9970c7152419d80629bc8a7e94ea556b9779f833';
+  // let updatedBlog = {
+  //   title: title,
+  //   content: content,
+  //   image: image,
+  //   author: 'Rafli',
+  //   postedAt: new Date(),
+  // };
+  // blogs[id] = updatedBlog; // blogs[id] atau blog yang index nya lagi dibuka diupdate dengan object updatedBlog
+  // parsedDate = newDate().toISOString()
+  const query = `UPDATE "Blogs"
+                SET title='${title}', content='${content}', "updatedAt"='${new Date().toISOString()}'
+                WHERE id=${id};
+  `;
+  const updateResult = await sequelize.query(query, { type: QueryTypes.UPDATE });
   res.redirect('/blog');
 }
 
-function renderBlogEdit(req, res) {
+async function renderBlogEdit(req, res) {
   const id = req.params.id; //params yang /:id di blog
-  const chosenBlog = blogs[id]; //blog yang dipilih = blogs[index] id nya dari params, params nya dari index, lempar lemparan pokoknya, tar juga lu ngerti 😌
+  // const chosenBlog = blogs[id]; //blog yang dipilih = blogs[index] id nya dari params, params nya dari index, lempar lemparan pokoknya, tar juga lu ngerti 😌
+  const query = `SELECT * FROM "Blogs" WHERE id = ${id}`;
+  const chosenBlog = await sequelize.query(query, { type: QueryTypes.SELECT });
   res.render('blog-edit', {
-    blog: chosenBlog,
-    index: id,
+    blog: chosenBlog[0],
+    // index: id, // ga perlu karena udah ga make index dari array, melainkan ambil dari db
     title: 'Edit Blog',
     ...icon,
   });
@@ -140,8 +163,8 @@ function renderForm(req, res) {
 module.exports = {
   renderIndex,
   renderProject,
-  renderBlog,
-  renderBlogDetail,
+  /*renderBlog, */
+  /*renderBlogDetail,*/
   renderBlogEdit,
   renderCreateBlog,
   createBlog,
