@@ -1,7 +1,75 @@
 <!-- NAV -->
-<nav>
+<style>
+  /* Custom styles to match your original CSS */
+  .navbar {
+    background-color: var(--secondary-color);
+    padding: 1em 3em;
+  }
+
+  .navbar-nav .nav-link {
+    color: black;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: grey;
+  }
+
+  .dropdown-menu {
+    background-color: var(--secondary-color);
+    border: 1px solid grey;
+  }
+
+  .dropdown-menu .dropdown-item {
+    color: black;
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: var(--primary-color);
+  }
+
+  .contactme {
+    border: 1px solid black;
+    padding: 5px 1em;
+    border-radius: 10px;
+    color: white;
+    background-color: #070d0d;
+    text-decoration: none;
+  }
+</style>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <img src="img/dumbways.png" alt="Logo Dumbways" width="5%">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link {{#if (eq currentPage 'home')}}active{{/if}}" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if (eq currentPage 'myproject')}}active{{/if}}" href="/myproject">My Project</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="otherDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Others ⮟
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="otherDropdown">
+            <li><a class="dropdown-item {{#if (eq currentPage 'blog')}}active{{/if}}" href="/blog">Blog</a></li>
+            <li><a class="dropdown-item {{#if (eq currentPage 'testimonial')}}active{{/if}}"
+                href="/testimonial">Testimonial</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a class="contactme {{#if (eq currentPage 'form')}}active{{/if}}" target="_blank" href="/form">Contact Me</a>
+    </div>
+  </div>
+</nav>
+{{!-- <nav>
   <ul>
-    <img src='/img/dumbways.png' alt='Logo Dumbways' width='7%' />
+    <img src='img/dumbways.png' alt='Logo Dumbways' width='7%' />
     <li><a href='/' class='{{#if (eq currentPage "home")}}active{{/if}}'>Home</a></li>
     <li><a href='/myproject' class='{{#if (eq currentPage "myproject")}}active{{/if}}'>My Project</a></li>
     <div class='dropdown'>
@@ -13,5 +81,5 @@
     </div>
   </ul>
   <a class='contactme {{#if (eq currentPage "form")}}active{{/if}}' target='_blank' href='/form'>Contact Me</a>
-</nav>
+</nav> --}}
 <!-- NAV -->

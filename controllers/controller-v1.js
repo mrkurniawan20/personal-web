@@ -4,17 +4,23 @@ const icon = {
   cssPath: '/css/style.css',
 };
 
+const { Sequelize, QueryTypes } = require('sequelize');
+const config = require('../config/config.json');
+const sequelize = new Sequelize(config.development);
+
+let blogs = [];
+
 //array blogs awal
-let blogs = [
-  {
-    title: 'Pasar Coding Indonesia',
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
-    image: '/img/cars.jpg',
-    author: 'Rafli Kurniawan',
-    postedAt: new Date(),
-  },
-];
+// let blogs = [
+//   {
+//     title: 'Pasar Coding Indonesia',
+//     content:
+//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,",
+//     image: '/img/cars.jpg',
+//     author: 'Rafli Kurniawan',
+//     postedAt: new Date(),
+//   },
+// ];
 // Function buat render index
 function renderIndex(req, res) {
   res.render('index', {
@@ -33,8 +39,12 @@ function renderProject(req, res) {
   });
 }
 
-function renderBlog(req, res) {
-  console.log(blogs); //console log di terminal server buat liat array blogs nya
+async function renderBlog(req, res) {
+  // console.log(blogs); //console log di terminal server buat liat array blogs nya
+  const blogs = await sequelize.query('SELECT * FROM public."Blogs"', {
+    type: QueryTypes.SELECT,
+  });
+  console.log(blogs);
   res.render('blog', {
     blogs: blogs,
     title: 'Blog',
@@ -105,6 +115,7 @@ function renderBlogEdit(req, res) {
   res.render('blog-edit', {
     blog: chosenBlog,
     index: id,
+    title: 'Edit Blog',
     ...icon,
   });
 }

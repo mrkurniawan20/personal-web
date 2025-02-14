@@ -83,11 +83,11 @@
         <a href="/blog/{{@index}}">
           <h2>{{this.title}}</h2>
         </a>
-        <p class='datetime'>{{formatDateToWIB this.postedAt}} | {{this.author}}</p>
+        <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.authorId}}</p>
         <p>
           {{this.content}}
         </p>
-        <p class='relative-time-blog'>{{getRelativeTime this.postedAt}}</p>
+        <p class='relative-time-blog'>{{getRelativeTime this.createdAt}}</p>
       </div>
     </article>
     {{/each}}

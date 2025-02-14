@@ -6,9 +6,9 @@
   --tertiary-color: #fe4e30;
 }
 body {
-  font-family: Poppins;
-  font-size: larger;
-  background-color: var(--primary-color);
+  font-family: 'Poppins' !important;
+  font-size: large !important;
+  background-color: var(--primary-color) !important;
   margin: 0;
   padding: 0;
 }
@@ -19,7 +19,7 @@ body {
 
 /* GENERAL ANCHOR */
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 1em 0;
   white-space: nowrap;
 }
@@ -50,7 +50,7 @@ nav li a,
   color: grey;
 }
 .other:hover + .content {
-  display: flex;
+  display: flex !important;
 }
 .content {
   display: none;
@@ -87,12 +87,12 @@ nav li a,
 /* MAIN CONTENT */
 .main-container {
   width: 85%;
-  height: 85%;
+  height: 90%;
   background-color: var(--secondary-color);
   margin: 2em auto;
   border-radius: 10px;
   display: flex;
-  padding: 3em;
+  padding: 2em;
 }
 .main-left {
   width: 50%;
@@ -101,6 +101,7 @@ nav li a,
 }
 .main-right {
   width: 30%;
+  padding: 0;
   margin: 0 auto;
   border-radius: 10px;
   box-shadow: 0px 0px 5px #aaaaaa;
