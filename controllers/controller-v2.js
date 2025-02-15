@@ -15,6 +15,7 @@ async function renderBlog(req, res) {
   });
   //   console.log(blogs);
   res.render('blog', {
+    currentPage: 'blog',
     blogs: blogs,
     ...icon,
   });

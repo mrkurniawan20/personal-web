@@ -146,7 +146,7 @@ async function renderBlogEdit(req, res) {
 function renderTestimonial(req, res) {
   res.render('testimonial', {
     title: 'Testimonials',
-    currentPage: 'tesetimonial',
+    currentPage: 'testimonial',
     ...icon,
   });
 }

@@ -14,7 +14,7 @@ body {
 }
 .active {
   color: var(--tertiary-color) !important;
-  font-weight: bolder;
+  font-weight: bolder !important;
 }
 
 /* GENERAL ANCHOR */
@@ -72,32 +72,39 @@ nav li a,
 .content a:hover {
   background-color: var(--primary-color);
 }
-.contactme {
+/* .contactme {
   border: 1px solid black;
   padding: 5px 1em;
   border-radius: 10px;
   color: white;
   background-color: #070d0d;
-}
-.contactme:hover {
+} */
+/* .contactme:hover {
   background-color: grey;
   border: 1px solid grey;
-}
+} */
 
 /* MAIN CONTENT */
+main {
+  margin-top: 5.5em;
+  height: fit-content;
+}
 .main-container {
   width: 85%;
   height: 90%;
   background-color: var(--secondary-color);
-  margin: 2em auto;
+  margin: 2em auto 2em auto;
   border-radius: 10px;
   display: flex;
-  padding: 2em;
+  padding: 2em 0.5em;
 }
 .main-left {
   width: 50%;
   padding: 0 0 2em 0;
   margin: 2em auto;
+}
+.main-left p {
+  text-align: justify;
 }
 .main-right {
   width: 30%;
@@ -107,13 +114,13 @@ nav li a,
   box-shadow: 0px 0px 5px #aaaaaa;
   overflow: hidden;
 }
-h2 {
+.main-right h2 {
   margin: 0;
 }
 .list {
   width: 70%;
   display: flex;
-  margin-left: -2.5em;
+  margin-left: -2em;
 }
 
 .contact {
@@ -142,9 +149,6 @@ li a:hover {
 }
 .link:hover {
   width: 80%;
-}
-p {
-  text-align: justify;
 }
 
 .contactdownload {
@@ -378,4 +382,79 @@ option {
 .submit-form:hover {
   background-color: grey;
   border: 1px solid grey;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-container {
+    flex-direction: column;
+    height: fit-content;
+    padding: 1em;
+  }
+  .main-left {
+    width: 100%;
+    padding: 0 0 2em 0;
+    margin: 2em auto;
+  }
+  .main-right {
+    width: 50%;
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #aaaaaa;
+  }
+  .list {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main-container {
+    flex-direction: column;
+    height: fit-content;
+    padding: 1em;
+  }
+  .main-left {
+    width: 100%;
+    padding: 0 0 2em 0;
+    margin: 2em auto;
+  }
+  .main-right {
+    width: 50%;
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #aaaaaa;
+  }
+  h2 {
+    margin: 0;
+  }
+  .list {
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+  }
+
+  .contact {
+    border: 1px solid black;
+    padding: 5px 1.7em;
+    border-radius: 100px;
+    color: white;
+    background-color: #070d0d;
+  }
+  .download {
+    color: black;
+    margin-left: 20px;
+    /* padding-left: 20px; */
+  }
+  .link {
+    text-align: center;
+    padding: 0;
+  }
+  p {
+    text-align: justify;
+  }
+  .contactdownload {
+    margin: 3em 0;
+  }
 }

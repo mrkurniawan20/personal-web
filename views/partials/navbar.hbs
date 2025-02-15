@@ -1,5 +1,5 @@
 <!-- NAV -->
-<style>
+{{!-- <style>
   /* Custom styles to match your original CSS */
   .navbar {
     background-color: var(--secondary-color);
@@ -35,8 +35,8 @@
     background-color: #070d0d;
     text-decoration: none;
   }
-</style>
-<nav class="navbar navbar-expand-lg">
+</style> --}}
+{{!-- <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <img src="img/dumbways.png" alt="Logo Dumbways" width="5%">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -44,8 +44,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
+      <ul class="navbar-nav ">
+        <li class="nav-item ">
           <a class="nav-link {{#if (eq currentPage 'home')}}active{{/if}}" href="/">Home</a>
         </li>
         <li class="nav-item">
@@ -63,10 +63,10 @@
           </ul>
         </li>
       </ul>
-      <a class="contactme {{#if (eq currentPage 'form')}}active{{/if}}" target="_blank" href="/form">Contact Me</a>
     </div>
+    <a class=" contactme {{#if (eq currentPage 'form')}}active{{/if}}" target="_blank" href="/form">Contact Me</a>
   </div>
-</nav>
+</nav> --}}
 {{!-- <nav>
   <ul>
     <img src='img/dumbways.png' alt='Logo Dumbways' width='7%' />
@@ -83,3 +83,69 @@
   <a class='contactme {{#if (eq currentPage "form")}}active{{/if}}' target='_blank' href='/form'>Contact Me</a>
 </nav> --}}
 <!-- NAV -->
+<!-- Navbar -->
+<style>
+  /* Color of the links BEFORE scroll */
+  .navbar-scroll .nav-link,
+  .navbar-scroll .navbar-toggler-icon,
+  .navbar-scroll .navbar-brand {
+    color: #262626;
+  }
+
+  /* Color of the navbar BEFORE scroll */
+  .navbar-scroll {
+    background-color: rgb(231, 223, 223);
+  }
+
+  /* Color of the links AFTER scroll */
+  .navbar-scrolled .nav-link,
+  .navbar-scrolled .navbar-toggler-icon,
+  .navbar-scroll .navbar-brand {
+    color: #262626;
+  }
+
+  /* Color of the navbar AFTER scroll */
+  .navbar-scrolled {
+    background-color: #fff;
+  }
+
+  /* An optional height of the navbar AFTER scroll */
+  .navbar.navbar-scroll.navbar-scrolled {
+    padding-top: auto;
+    padding-bottom: auto;
+  }
+
+  .navbar-brand {
+    font-size: unset;
+    height: 3rem;
+  }
+</style>
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-scroll shadow-0 border-dark fixed-top" data-mdb-navbar-init>
+  <div class="container">
+    <img class="navbar-brand" src="/img/dumbways.png" alt="">
+    {{!-- <a class="navbar-brand" href="#!"><i class="fab fa-mdb fa-4x"></i></a> --}}
+    <button class="navbar-toggler" type="button" data-mdb-collapse-init data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto others">
+        <li class="nav-item">
+          <a class="nav-link {{#if (eq currentPage 'home')}}active{{/if}}" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if (eq currentPage 'myproject')}}active{{/if}}" href="/myproject">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if (eq currentPage 'blog')}}active{{/if}}" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{#if (eq currentPage 'testimonial')}}active{{/if}}" href="/testimonial">Testimonial</a>
+        </li>
+        <a href="/form" class="" style="padding:0"><button type="button" class=" btn btn-dark ">CONTACT ME</button></a>
+      </ul>
+    </div>
+  </div>
+</nav>
