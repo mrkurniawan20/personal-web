@@ -8,6 +8,7 @@ const { renderIndex, /*renderBlog,*/ /*renderBlogDetail*/ renderBlogEdit, create
 const { formatDateToWIB, getRelativeTime } = require('./utils/time'); //import modul dari js time
 
 const { renderBlog, renderBlogDetail } = require('./controllers/controller-v2');
+const { truncate } = require('fs');
 const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {
@@ -26,6 +27,12 @@ hbs.registerPartials(__dirname + '/views/partials', function (err) {}); //__dirn
 hbs.registerHelper('eq', (a, b) => a === b); //helper buat if statement, dipake di html
 hbs.registerHelper('formatDateToWIB', formatDateToWIB); //assigned function helper buat dipake di html, '{namanya}', modulnya
 hbs.registerHelper('getRelativeTime', getRelativeTime);
+hbs.registerHelper('truncate', function (str, len) {
+  if (str.length > len) {
+    return str.substring(0, len) + `....<a href=/blog/${this.id}>Read more</a>`;
+  }
+  return str;
+});
 
 // GET METHOD SEBELUM PAKAI MODUL
 

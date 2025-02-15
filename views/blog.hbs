@@ -38,61 +38,62 @@
 
 <!-- BLOG LIST -->
 <hr /> --}}
-<main>
-  <h1>My Blog</h1>
-  <div class="" style="text-align: right; margin: 10px">
-    <a class="edit" href="addblog">Create Blog</a>
 
-  </div>
-  {{!-- <section id='blogList' class='blogList'>
-    <article class='blog-item'>
-      <div class='blog-image'>
-        <img src='img/cars.jpg' width='100%' alt='' />
+<h1>My Blog</h1>
+<div class="text-center m-5">
+  <a class="btn btn-primary" href="addblog">Create Blog</a>
+</div>
+{{!-- <section id='blogList' class='blogList'>
+  <article class='blog-item'>
+    <div class='blog-image'>
+      <img src='img/cars.jpg' width='100%' alt='' />
+    </div>
+    <div class='blog-article'>
+      <div class='blog-item-button'>
+        <button class='edit'>Edit Blog</button>
+        <button class='push'>Push Blog</button>
       </div>
-      <div class='blog-article'>
-        <div class='blog-item-button'>
-          <button class='edit'>Edit Blog</button>
-          <button class='push'>Push Blog</button>
-        </div>
-        <h2>Pasar Coding Indonesia</h2>
-        <p class='datetime'>30 Jan 2025 11:45 | Muhammad Rafli Kurniawan</p>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, inventore? Similique atque aliquid veritatis
-          pariatur repellendus. Magni illo autem harum molestiae fuga hic quas facere possimus dolorum dolor? Eligendi,
-          quod
-          dolores cumque placeat blanditiis ratione. Omnis necessitatibus excepturi deleniti? Pariatur excepturi quaerat
-          magni! Maxime optio possimus eaque atque, corporis laudantium!
-        </p>
-        <p class='relative-time-blog'>1 day ago</p>
-      </div>
-    </article> --}}
+      <h2>Pasar Coding Indonesia</h2>
+      <p class='datetime'>30 Jan 2025 11:45 | Muhammad Rafli Kurniawan</p>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, inventore? Similique atque aliquid veritatis
+        pariatur repellendus. Magni illo autem harum molestiae fuga hic quas facere possimus dolorum dolor? Eligendi,
+        quod
+        dolores cumque placeat blanditiis ratione. Omnis necessitatibus excepturi deleniti? Pariatur excepturi quaerat
+        magni! Maxime optio possimus eaque atque, corporis laudantium!
+      </p>
+      <p class='relative-time-blog'>1 day ago</p>
+    </div>
+  </article> --}}
 
-    {{#each blogs}}
-    <article class='blog-item'>
-      <div class='blog-image'>
-        <img src='{{this.image}}' width='100%' alt='' />
+  {{#each blogs}}
+  <article class='blog-item'>
+    <div class='blog-image'>
+      <img src='{{this.image}}' width='100%' alt='' />
+    </div>
+    <div class='blog-article'>
+      <div class='blog-item-button'>
+        <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='btn btn-light'> <span>Edit
+            Blog</span><i class="fas fa-edit"></i></a>
+        <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post">
+          <button onclick="return confirm('Are you sure you want to delete?')" class='btn btn-dark' type="submit">
+            <span>Delete
+              Blog</span><i class="fa-solid fa-trash"></i></button>
+        </form>
       </div>
-      <div class='blog-article'>
-        <div class='blog-item-button'>
-          <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='edit'>Edit Blog</a>
-          <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post">
-            <button onclick="return confirm('Are you sure you want to delete?')" class='delete' type="submit">Delete
-              Blog</button>
-          </form>
-        </div>
-        <a href="/blog/{{this.id}}">
-          <h2>{{this.title}}</h2>
-        </a>
-        <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.authorId}}</p>
-        <p>
-          {{this.content}}
-        </p>
-        <p class='relative-time-blog'>{{getRelativeTime this.createdAt}}</p>
-      </div>
-    </article>
-    {{/each}}
-  </section>
-</main>
-<script src='js/blog.js'></script>
+      <a href="/blog/{{this.id}}">
+        <h3>{{this.title}}</h3>
+      </a>
+      <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.authorId}}</p>
+      <p>
+        {{{truncate this.content 100}}}
+      </p>
+      <p class='relative-time-blog'>{{getRelativeTime this.createdAt}}</p>
+    </div>
+  </article>
+  {{/each}}
+</section>
+{{!--
+<script src='js/blog.js'></script> --}}
 
 {{/layout}}

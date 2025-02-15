@@ -42,7 +42,7 @@ nav ul {
   list-style-type: none;
   gap: 40px;
 }
-nav li a,
+/* nav li a,
 .other {
   color: black;
 }
@@ -55,12 +55,12 @@ nav li a,
 .content {
   display: none;
   /* display: flex; */
-  position: absolute;
+/*position: absolute;
   flex-direction: column;
   background-color: var(--secondary-color);
   padding-top: 0;
-  border: 1px solid grey;
-}
+  border: 1px solid grey; */
+/* }
 .content:hover {
   display: flex;
 }
@@ -71,7 +71,7 @@ nav li a,
 }
 .content a:hover {
   background-color: var(--primary-color);
-}
+} */
 /* .contactme {
   border: 1px solid black;
   padding: 5px 1em;
@@ -199,48 +199,6 @@ hr {
   width: 90%;
   margin: 10px auto;
 }
-section {
-  width: 90%;
-  margin: 0 auto;
-  border: 2px solid grey;
-}
-.blog-item {
-  display: flex;
-  width: 100%;
-  gap: 30px;
-}
-.blog-image {
-  margin: 10px;
-  width: 100%;
-}
-.blog-item-button {
-  text-align: right;
-  margin: 5px 10px;
-}
-.blog-item-button .edit {
-  border: 1px solid var(--secondary-color);
-  padding: 5px 1em;
-  border-radius: 10px;
-  color: black;
-  background-color: var(--secondary-color);
-  font-family: Poppins;
-  font-size: medium;
-  cursor: pointer;
-}
-
-.blog-item-button .push {
-  border: 1px solid black;
-  padding: 5px 1em;
-  border-radius: 10px;
-  color: white;
-  background-color: #070d0d;
-  font-family: Poppins;
-  font-size: medium;
-  cursor: pointer;
-}
-.datetime {
-  color: grey;
-}
 .form-date {
   display: flex;
   margin: 20px 0;
@@ -330,21 +288,28 @@ section {
 }
 
 /* BLOG CSS */
-.blog-item-button .push:hover,
-.blog-item-button .edit:hover {
-  background-color: grey !important;
-  border: 1px solid grey !important;
+.datetime {
+  color: grey;
 }
+.blog-article i {
+  display: none;
+}
+
 .blog-item {
   display: flex;
-  width: 100%;
-  gap: 30px;
+  width: 90%;
+  margin: 20px auto;
+  border: 2px solid grey;
+  border-radius: 10px;
 }
 .blog-image {
   margin: 10px;
   width: 100%;
   display: flex;
   align-items: center;
+}
+.blog-image img {
+  border-radius: 10px;
 }
 .blog-article {
   width: 100%;
@@ -456,5 +421,21 @@ option {
   }
   .contactdownload {
     margin: 3em 0;
+  }
+
+  /* MY PROJECT */
+  main form {
+    width: 90%;
+  }
+  .project-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  /* BLOG */
+  .blog-article i {
+    display: block;
+  }
+  .blog-article span {
+    display: none;
   }
 }
