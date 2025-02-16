@@ -1,7 +1,8 @@
 {{#>layout}}
 
 <head>
-  <link rel='stylesheet' href='/css/testimonial.css' />
+  {{!--
+  <link rel='stylesheet' href='/css/testimonial.css' /> --}}
 </head>
 {{!-- <html lang='en'>
 
@@ -25,8 +26,8 @@
     <a class='contactme' target='_blank' href='form'>Contact Me</a>
   </nav> --}}
   <main>
-    <h1>My Testimonial</h1>
-    <h3>Rating By Star</h3>
+    <h1 class="text-center"><b>TESTIMONIALS</b></h1>
+    <h4 class="text-center">Rating By Star</h4>
 
     <div class='star-button'>
       <button onclick='showAllTestimonials()'>All</button>
@@ -38,6 +39,8 @@
     </div>
 
     <div class='testimonial-list' id='testimonial-list'>
+      <div class="spinner-border text-warning" role="status">
+      </div>
       <!-- <div class="testimonials">
           <img src="img/image1.jpg" alt="" />
           <i class="testi">Lorem ipsum dolor sit amet.</i>

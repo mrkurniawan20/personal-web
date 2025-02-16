@@ -39,7 +39,7 @@
 <!-- BLOG LIST -->
 <hr /> --}}
 
-<h1>My Blog</h1>
+<h1 class="text-center"><b>BLOGS</b></h1>
 <div class="text-center m-5">
   <a class="btn btn-primary" href="addblog">Create Blog</a>
 </div>
@@ -72,7 +72,7 @@
       <img src='{{this.image}}' width='100%' alt='' />
     </div>
     <div class='blog-article'>
-      <div class='blog-item-button'>
+      <div class='blog-item-button text-end'>
         <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='btn btn-light'> <span>Edit
             Blog</span><i class="fas fa-edit"></i></a>
         <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post">
@@ -82,13 +82,16 @@
         </form>
       </div>
       <a href="/blog/{{this.id}}">
-        <h3>{{this.title}}</h3>
+        <h3 class="pt-3">{{this.titl}}</h3>
       </a>
       <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.authorId}}</p>
-      <p>
+      <p class="blog-title-desktop">
         {{{truncate this.content 100}}}
       </p>
-      <p class='relative-time-blog'>{{getRelativeTime this.createdAt}}</p>
+      <p class="blog-title-mobile">
+        {{{truncate this.content 50}}}
+      </p>
+      <p class='relative-time-blog text-end'>{{getRelativeTime this.createdAt}}</p>
     </div>
   </article>
   {{/each}}

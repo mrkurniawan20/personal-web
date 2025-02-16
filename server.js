@@ -8,7 +8,6 @@ const { renderIndex, /*renderBlog,*/ /*renderBlogDetail*/ renderBlogEdit, create
 const { formatDateToWIB, getRelativeTime } = require('./utils/time'); //import modul dari js time
 
 const { renderBlog, renderBlogDetail } = require('./controllers/controller-v2');
-const { truncate } = require('fs');
 const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {

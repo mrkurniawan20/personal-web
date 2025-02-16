@@ -28,7 +28,7 @@
   <!-- NAV --> --}}
 
   {{#>layout}}
-  <h1>Add My Project</h1>
+  <h1 class="text-center pt-2"><b>ADD MY PROJECT</b></h1>
   <!-- FORM -->
   <form action='' onsubmit='addProject(event)'>
     <div class='form-field'>
@@ -75,15 +75,15 @@
       <label for='image'>Upload Image</label>
       <input type='file' id='image' name='image' />
     </div>
-    <div class='button' style="margin-bottom: 15px;">
+    <div class='button text-end' style="margin-bottom: 15px;">
       <button class='submit' type='submit'>submit</button>
     </div>
   </form>
 
-  <!-- BLOG LIST -->
+  <!-- PROJECT LIST -->
   <div class='project-list'>
-    <h1>My Project</h1>
-    <section class='project-container' id='project-container'>
+    <h1 class="text-center">My Project</h1>
+    {{!-- <section class='project-container' id='project-container'>
       <article id='project' class='project'>
         <img src='img/image1.jpg' alt='' />
         <h2>Dumbways Mobile App - 2021</h2>
@@ -94,12 +94,12 @@
           <img src='img/react.png' alt='' />
           <img src='img/express.png' alt='' />
         </ul>
-        <ul class='button2'>
+        <ul class='button2 text-center'>
           <button class='edit' id='edit'>edit</button>
           <button class='delete' id='delete' onclick='deleteProject()'>delete</button>
         </ul>
       </article>
-    </section>
+    </section> --}}
   </div>
 
   <script src='js/myproject.js'></script>
