@@ -82,7 +82,7 @@
         </form>
       </div>
       <a href="/blog/{{this.id}}">
-        <h3 class="pt-3">{{this.titl}}</h3>
+        <h3 class="pt-3">{{this.title}}</h3>
       </a>
       <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.authorId}}</p>
       <p class="blog-title-desktop">
@@ -95,7 +95,8 @@
     </div>
   </article>
   {{/each}}
-</section>
+  {{!--
+</section> --}}
 {{!--
 <script src='js/blog.js'></script> --}}
 

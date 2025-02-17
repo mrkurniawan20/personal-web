@@ -27,6 +27,11 @@ a {
   white-space: nowrap;
 }
 
+footer ul li a:hover,
+.nav-item .nav-link:hover {
+  color: white !important;
+}
+
 /* NAVBAR */
 nav {
   display: flex;
@@ -179,19 +184,6 @@ textarea {
   border-radius: 5px;
   border: 1px solid var(--secondary-color);
 }
-.submit {
-  border: 1px solid black;
-  padding: 5px 1em;
-  border-radius: 10px;
-  color: white;
-  background-color: #070d0d;
-  font-family: Poppins;
-  cursor: pointer;
-}
-.submit:hover {
-  background-color: grey;
-  border: 1px solid grey;
-}
 hr {
   border: 2px solid grey;
   width: 90%;
@@ -325,6 +317,12 @@ hr {
   margin-right: 30px;
 }
 
+/* BLOG DETAIL */
+.blog-detail {
+  width: 70%;
+  margin: 0 auto;
+}
+
 /* TESTIMONIAL */
 .star-button {
   display: flex;
@@ -399,6 +397,9 @@ option {
     width: 100%;
     margin: 0;
   }
+  main form {
+    width: 50%;
+  }
 
   /* TESTIMONIAL */
   .testimonial-list {
@@ -457,7 +458,7 @@ option {
 
   /* MY PROJECT */
   main form {
-    width: 90%;
+    width: 85%;
   }
   .project-container {
     grid-template-columns: repeat(1, 1fr);
