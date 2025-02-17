@@ -4,10 +4,10 @@ const app = express(); //assigned semua function yang ada di express sebagai var
 const path = require('path'); //import modul path
 const methodOverride = require('method-override'); //import modul methodOverride (download dulu, dependencies ada di package json)
 
-const { renderIndex, /*renderBlog,*/ /*renderBlogDetail*/ renderBlogEdit, createBlog, renderProject, renderTestimonial, renderCreateBlog, renderForm, deleteBlog, updateBlog } = require('./controllers/controller-v1'); //import modul dari js controller
+const { renderIndex, /*renderBlog,*/ /*renderBlogDetail*/ /*renderBlogEdit*/ /*createBlog*/ renderProject, renderTestimonial, /*renderCreateBlog,*/ renderForm, deleteBlog /*updateBlog*/ } = require('./controllers/controller-v1'); //import modul dari js controller
 const { formatDateToWIB, getRelativeTime } = require('./utils/time'); //import modul dari js time
 
-const { renderBlog, renderBlogDetail } = require('./controllers/controller-v2');
+const { renderBlog, renderBlogDetail, createBlog, renderCreateBlog, renderBlogEdit, updateBlog } = require('./controllers/controller-v2');
 const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {

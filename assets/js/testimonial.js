@@ -71,9 +71,9 @@ const testimonialsHTML = (array) => {
       (testimonial) => `
         <article>
           <img src="${testimonial.image}" alt="testimonial-image" />
-          <p class="testimonial-item-caption">"${testimonial.caption}"</p>
-          <p style="text-align: right">- ${testimonial.author}</p>
-          <p style="text-align: right; font-weight: bold">${testimonial.rating}★</p>
+          <p class="testimonial-item-caption pt-3"><i>"${testimonial.caption}"</i></p>
+          <p class="text-end">- ${testimonial.author}</p>
+          <p class="text-end" style="font-weight: bold">${testimonial.rating}★</p>
         </article>
         `
     )

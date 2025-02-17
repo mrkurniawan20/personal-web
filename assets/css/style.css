@@ -239,7 +239,7 @@ hr {
 }
 .relative-time {
   color: grey;
-  margin-top: -1em;
+  margin-top: -0.5em;
   font-size: smaller;
 }
 .skills {
@@ -293,7 +293,7 @@ hr {
 }
 .blog-image {
   margin: 10px;
-  width: 100%;
+  width: 40%;
   display: flex;
   align-items: center;
 }
@@ -304,6 +304,12 @@ hr {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
+}
+.blog-article a h3:hover {
+  color: grey !important;
+}
+.blog-title-desktop {
+  width: 90%;
 }
 .blog-title-mobile {
   display: none;
@@ -328,16 +334,6 @@ hr {
   display: flex;
   justify-content: center;
   gap: 10px;
-}
-.star-button button {
-  justify-content: center;
-  border: 1px solid salmon;
-  padding: 5px 1em;
-  border-radius: 10px;
-  color: white;
-  background-color: salmon;
-  font-family: Poppins;
-  cursor: pointer;
 }
 .testimonial-list {
   display: grid;
@@ -399,6 +395,11 @@ option {
   }
   main form {
     width: 50%;
+  }
+
+  /* PROJECT */
+  .project-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* TESTIMONIAL */

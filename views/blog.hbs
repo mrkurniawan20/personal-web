@@ -41,7 +41,7 @@
 
 <h1 class="text-center"><b>BLOGS</b></h1>
 <div class="text-center m-5">
-  <a class="btn btn-primary" href="addblog">Create Blog</a>
+  <a class="btn btn-dark" href="addblog">Create Blog</a>
 </div>
 {{!-- <section id='blogList' class='blogList'>
   <article class='blog-item'>
@@ -73,18 +73,18 @@
     </div>
     <div class='blog-article'>
       <div class='blog-item-button text-end'>
-        <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='btn btn-light'> <span>Edit
+        <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='btn btn-warning'> <span>Edit
             Blog</span><i class="fas fa-edit"></i></a>
         <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post">
-          <button onclick="return confirm('Are you sure you want to delete?')" class='btn btn-dark' type="submit">
+          <button onclick="return confirm('Are you sure you want to delete?')" class='btn btn-danger' type="submit">
             <span>Delete
               Blog</span><i class="fa-solid fa-trash"></i></button>
         </form>
       </div>
       <a href="/blog/{{this.id}}">
-        <h3 class="pt-3">{{this.title}}</h3>
+        <h3 class="text-dark mt-3">{{this.title}}</h3>
       </a>
-      <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.authorId}}</p>
+      <p class='datetime'>{{formatDateToWIB this.createdAt}} | Rafli Kurniawan</p>
       <p class="blog-title-desktop">
         {{{truncate this.content 100}}}
       </p>
