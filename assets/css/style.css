@@ -371,6 +371,20 @@ option {
 }
 
 @media screen and (max-width: 1000px) {
+  .span {
+    display: none;
+  }
+  .logout {
+    display: block;
+  }
+  .logout-contact {
+    margin-top: 2em;
+  }
+
+  .navbar-nav {
+    gap: 25px !important;
+  }
+
   .main-container {
     flex-direction: column;
     height: fit-content;

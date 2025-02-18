@@ -1,0 +1,73 @@
+{{#>layout}}
+
+{{!-- <html lang='en'>
+
+<head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Contact Form</title>
+    <link rel='stylesheet' href='{{cssPath}}' />
+    <link rel='icon' type='image/x-icon' href='{{iconPath}}' />
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav>
+        <ul>
+            <img src='img/dumbways.png' alt='Logo Dumbways' width='7%' />
+            <li><a href=''>Home</a></li>
+            <li><a href='myproject'>My Project</a></li>
+            <div class='dropdown'>
+                <a href='#' class='other'>Others ⮟</a>
+                <div class='content'>
+                    <a href='blog'>Blog</a>
+                    <a href='testimonial'>Testimonial</a>
+                </div>
+            </div>
+        </ul>
+        <!-- <a class="contactme" target="_blank" href="form" >Contact Me</a> -->
+    </nav>
+    <!-- NAV --> --}}
+    {{!-- messages udah built in dari flash --}}
+    {{!-- pesan sukses --}}
+    {{#unless user}}
+    {{#if messages.success}}
+    <div class="alert alert-success text-center" role="alert">
+        {{messages.success}}
+    </div>
+    {{/if}}
+    {{!-- pesan error --}}
+    {{#if messages.error}}
+    <div class="alert alert-danger text-center" role="alert">
+        {{messages.error}}
+    </div>
+    {{/if}}
+    <h1 class="text-center mb-5"><b>Welcome back! Please Login</b></h1>
+    <form id="login-from" class='auth-form' method="post" action='/auth-login' onsubmit='form(event)'>
+        <div class='form-field'>
+            {{!-- <label for='email'>Email</label> --}}
+            <input type='email' id='email' name="email" required placeholder="email" />
+        </div>
+        <div class='form-field'>
+            {{!-- <label for='password'>Password</label> --}}
+            <input type='password' id='password' name="password" required placeholder="password" />
+        </div>
+        <div class='text-center mt-3'>
+            <button class='btn btn-dark' type='submit'>LOGIN</button>
+        </div>
+        <p class="text-start mt-3 mb-5">Dont have an account? <a href="/register" class="text-primary">Sign Up</a></p>
+        <style>
+            .auth-form p a:hover {
+                text-decoration: underline !important;
+            }
+        </style>
+    </form>
+    {{/unless}}
+    {{#if user}}
+    <p class="text-center text-success">You're already logged in</p>
+    {{/if}}
+    {{!--
+</body>
+
+</html> --}}
+{{/layout}}

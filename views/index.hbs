@@ -31,6 +31,11 @@
   {{!-- {{>navbar}} --}}
 
   <!-- MAIN -->
+  {{#if messages.success}}
+  <div class="alert alert-success text-center" role="alert">
+    {{messages.success}}
+  </div>
+  {{/if}}
   <div class='main-container'>
     <div class='main-left'>
       <h2>Hello World, Rafli here</h2>
