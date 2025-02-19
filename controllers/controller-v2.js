@@ -149,32 +149,32 @@ async function renderCreateBlog(req, res) {
   const user = await req.session.user;
   //   console.log(blogs);
 
-  if (user) {
-    res.render('blog-add', {
-      user: user, //deklarasi user nya biar kena detect function session di web page tsb
-      title: 'Add Blog',
-      currentPage: 'addblog',
-      blogs: Blog, //blog ambil dari models kalau ambil dari array(line 5) dia ambilnya "blogs" sama aja sebenernya
-      ...icon,
-    });
-  } else {
-    req.flash('error', 'You need to Sign In !');
-    res.redirect('/login');
-  }
+  res.render('blog-add', {
+    user: user, //deklarasi user nya biar kena detect function session di web page tsb
+    title: 'Add Blog',
+    currentPage: 'addblog',
+    blogs: Blog, //blog ambil dari models kalau ambil dari array(line 5) dia ambilnya "blogs" sama aja sebenernya
+    ...icon,
+  });
 }
 
 async function createBlog(req, res) {
+  const user = await req.session.user;
   const { title, content } = req.body; //ngambil title sama content dari body, essentially "title = req.body.title"
+  // let dummyImage = 'https://i.redd.it/show-me-your-silly-cats-v0-wplu39sp6l1d1.jpg?width=4032&format=pjpg&auto=webp&s=9970c7152419d80629bc8a7e94ea556b9779f833'; UDAH GAPAKE BROW
 
-  let dummyImage = 'https://i.redd.it/show-me-your-silly-cats-v0-wplu39sp6l1d1.jpg?width=4032&format=pjpg&auto=webp&s=9970c7152419d80629bc8a7e94ea556b9779f833';
-
+  const image = req.file.path;
+  console.log(image);
+  console.log(req.body);
   const newBlog = {
     title, //title : title
     content, //samme^, just using cleaner way
-    image: dummyImage, //still using variable karena variable nya beda sama sql
+    authorId: user.id,
+    image: image, //still using variable karena variable nya beda sama sql
   };
+  console.log(newBlog);
   const resultSubmit = await Blog.create(newBlog);
-  console.log(resultSubmit);
+  // console.log(resultSubmit);
   // let newBlog = {
   //   title: title,
   //   content: content,
@@ -218,22 +218,18 @@ async function renderBlogEdit(req, res) {
     },
   });
   if (chosenBlog === null) {
-    res.render('page-404');
+    return res.render('page-404');
   }
-  if (!user) {
-    req.flash('error', 'You need to Logged In');
-    res.redirect('/login');
-  } else {
-    // const chosenBlog = blogs[id]; //chosenBlog ngambil id dari blogs, misal index 0 = blog[0]
-    res.render('blog-edit', {
-      //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
-      user: user, //deklarasi user nya biar kena detect function session di web page tsb
-      blog: chosenBlog, //nampilin blog
-      title: 'Blog Details',
-      currentPage: 'blog',
-      ...icon,
-    });
-  }
+
+  // const chosenBlog = blogs[id]; //chosenBlog ngambil id dari blogs, misal index 0 = blog[0]
+  res.render('blog-edit', {
+    //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
+    user: user, //deklarasi user nya biar kena detect function session di web page tsb
+    blog: chosenBlog, //nampilin blog
+    title: 'Blog Details',
+    currentPage: 'blog',
+    ...icon,
+  });
 }
 
 async function deleteBlog(req, res) {

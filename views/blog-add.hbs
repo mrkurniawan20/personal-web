@@ -19,7 +19,7 @@
 {{#if user}}
 <h1 class="text-center"><b>Create Post Blog</b></h1>
 <!-- FORM -->
-<form action='' action="/blog" method="post">
+<form action="/addblog" method="post" enctype="multipart/form-data">
   <div class='form-field'>
     <label for='title'>Title</label>
     <input name="title" type='text' id='title' required />
@@ -38,11 +38,8 @@
 </form>
 {{/if}}
 
-{{#unless user}}
-<p class="text-center text-danger">You need to Sign In to add Blog</p>
-{{/unless}}
-
 <!-- BLOG LIST -->
-<script src='js/blog.js'></script>
+{{!--
+<script src='js/blog.js'></script> --}}
 
 {{/layout}}

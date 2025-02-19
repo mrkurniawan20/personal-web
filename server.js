@@ -6,6 +6,7 @@ const flash = require('express-flash'); //import modul flash untuk ngasih info e
 const session = require('express-session'); //import modul session untuk kebutuhan session login/authentication
 const methodOverride = require('method-override'); //import modul methodOverride (download dulu, dependencies ada di package json)
 
+// const upload = require('./middlewares/upload-file');
 const { formatDateToWIB, getRelativeTime } = require('./utils/time'); //import modul dari js time
 const {
   /*renderIndex,*/
@@ -39,6 +40,8 @@ const {
   deleteBlog,
   updateBlog,
 } = require('./controllers/controller-v2'); //import modul dari js controller
+const upload = require('./middlewares/upload-file');
+const checkUser = require('./middlewares/auth');
 const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {
@@ -50,6 +53,7 @@ app.set('view engine', 'hbs'); //setting view engine, pake hbs
 
 //modul yang dipake
 app.use(express.static('assets')); //ngasih tau kalo server menggunakan assigned static kaya css,image,js macem assets, di folder 'assets'
+app.use('/uploads', express.static(path.join(__dirname, './uploads'))); //untuk ngasih tujuan direktori uploads yang ada di multer ke direktori uploads yang ada di folder server
 app.use(express.json()); //ngasih tau kalo server menggunaka function json
 app.use(express.urlencoded({ extended: true })); //ngasih tau kalo server menggunakan urlencoded function buat ambil data dari html method kaya post/get. extended:true buat bisa pake nested array object, crucial buat kalo mau pake method post/get
 app.use(methodOverride('_method')); //ngasih tau kalo server menggunakan app(express) pake method patch/delete, pokoknya selain post/get karena html hanya bisa mencerna method post/get
@@ -108,18 +112,19 @@ app.get('/myproject', renderProject);
 //RENDER BLOG
 app.get('/blog', renderBlog);
 //RENDER CREATE BLOG
-app.get('/addblog', renderCreateBlog);
+app.get('/addblog', checkUser, renderCreateBlog);
 //RENDER BLOG DETAIL
 app.get('/blog/:id', renderBlogDetail);
 //RENDER BLOT EDIT
-app.get('/editblog/:id', renderBlogEdit);
+app.get('/editblog/:id', checkUser, renderBlogEdit);
 //RENDER TESTIMONIAL
 app.get('/testimonial', renderTestimonial);
 //RENDER FORM CONTACT
 app.get('/form', renderForm);
 
 //SUBMIT ADD BLOG ^^
-app.post('/addblog', createBlog);
+app.post('/addblog', checkUser, upload.single('image'), createBlog); //image ini korelasinya di upload file js bagian fieldname
+
 //DELETE BLOG DI URL BLOG
 app.delete('/blog/:id', deleteBlog);
 //UNTUK EDIT BLOG
