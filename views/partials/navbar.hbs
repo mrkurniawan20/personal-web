@@ -92,28 +92,28 @@
     color: #262626;
   }
 
-  /* Color of the navbar BEFORE scroll */
+  /* Color of the navbar BEFORE scroll 
   .navbar-scroll {
     background-color: rgb(231, 223, 223);
-  }
+  }*/
 
-  /* Color of the links AFTER scroll */
+  /* Color of the links AFTER scroll 
   .navbar-scrolled .nav-link,
   .navbar-scrolled .navbar-toggler-icon,
   .navbar-scroll .navbar-brand {
     color: #262626;
-  }
+  }*/
 
-  /* Color of the navbar AFTER scroll */
+  /* Color of the navbar AFTER scroll 
   .navbar-scrolled {
     background-color: #fff;
-  }
+  }*/
 
-  /* An optional height of the navbar AFTER scroll */
+  /* An optional height of the navbar AFTER scroll 
   .navbar.navbar-scroll.navbar-scrolled {
     padding-top: auto;
     padding-bottom: auto;
-  }
+  }*/
 
   .navbar-brand {
     font-size: unset;
@@ -157,7 +157,7 @@
       <ul class="navbar-nav ms-auto gap-4">
         {{#if user}}
         <li class="nav-item">
-          <span class="span me-4">Welcome, {{user.name}}</span>
+          <p class="p-0 m-0">Welcome, {{user.name}}</p>
         </li>
         <li class="nav-item m-0">
           <a href="/logout"><button type="button" class="btn btn-danger ">Sign

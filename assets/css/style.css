@@ -29,7 +29,7 @@ a {
 
 footer ul li a:hover,
 .nav-item .nav-link:hover {
-  color: white !important;
+  color: grey !important;
 }
 
 /* NAVBAR */
@@ -371,15 +371,9 @@ option {
 }
 
 @media screen and (max-width: 1000px) {
-  .span {
+  /* .span {
     display: none;
-  }
-  .logout {
-    display: block;
-  }
-  .logout-contact {
-    margin-top: 2em;
-  }
+  } */
 
   .navbar-nav {
     gap: 25px !important;

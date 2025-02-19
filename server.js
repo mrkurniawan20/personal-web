@@ -2,8 +2,8 @@ const express = require('express'); //import express sebagai variable
 const hbs = require('hbs'); //import handlebars sebagai variable
 const app = express(); //assigned semua function yang ada di express sebagai variable
 const path = require('path'); //import modul path
-const flash = require('express-flash'); //import modul flash untuk register
-const session = require('express-session');
+const flash = require('express-flash'); //import modul flash untuk ngasih info error/success
+const session = require('express-session'); //import modul session untuk kebutuhan session login/authentication
 const methodOverride = require('method-override'); //import modul methodOverride (download dulu, dependencies ada di package json)
 
 const { formatDateToWIB, getRelativeTime } = require('./utils/time'); //import modul dari js time
@@ -38,7 +38,7 @@ const {
   createBlog,
   deleteBlog,
   updateBlog,
-} = require('./controllers/controller-v2');
+} = require('./controllers/controller-v2'); //import modul dari js controller
 const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {
@@ -49,17 +49,18 @@ const icon = {
 app.set('view engine', 'hbs'); //setting view engine, pake hbs
 
 //modul yang dipake
-app.use(express.static('assets')); //assigned static kaya css,image,js macem assets, di folder 'assets'
-app.use(express.json()); //using function json
-app.use(express.urlencoded({ extended: true })); //using urlencoded function buat ambil data dari html method kaya post/get. extended:true buat bisa pake nested array object, crucial buat kalo mau pake method post/get
-app.use(methodOverride('_method')); //membolehkan app(express) pake method patch/delete, pokoknya selain post/get karena html hanya bisa mencerna method post/get
-app.use(flash());
+app.use(express.static('assets')); //ngasih tau kalo server menggunakan assigned static kaya css,image,js macem assets, di folder 'assets'
+app.use(express.json()); //ngasih tau kalo server menggunaka function json
+app.use(express.urlencoded({ extended: true })); //ngasih tau kalo server menggunakan urlencoded function buat ambil data dari html method kaya post/get. extended:true buat bisa pake nested array object, crucial buat kalo mau pake method post/get
+app.use(methodOverride('_method')); //ngasih tau kalo server menggunakan app(express) pake method patch/delete, pokoknya selain post/get karena html hanya bisa mencerna method post/get
+app.use(flash()); //ngasih tau kalo server menggunakan flash setelah di import
 app.use(
   session({
-    name: 'my-session',
-    secret: 'qwertyuiop',
-    resave: false,
-    saveUninitialized: true,
+    //ngasih tau kalo server menggunakan session
+    name: 'my-session', //nama
+    secret: 'qwertyuiop', //secret key bebas(?)
+    resave: false, //??
+    saveUninitialized: true, //??
   })
 );
 
@@ -67,8 +68,9 @@ app.set('views', path.join(__dirname, './views')); //setting folder view engine
 hbs.registerPartials(__dirname + '/views/partials', function (err) {}); //__dirname buat ngasih tau folder yang mau dituju jadi, BASICALLY DIRNAME ITU FOLDER YANG DIBUKA ^^ YANG DI ATAS BROOOW
 hbs.registerHelper('eq', (a, b) => a === b); //helper buat if statement, dipake di html
 hbs.registerHelper('formatDateToWIB', formatDateToWIB); //assigned function helper buat dipake di html, '{namanya}', modulnya
-hbs.registerHelper('getRelativeTime', getRelativeTime);
+hbs.registerHelper('getRelativeTime', getRelativeTime); //assigned function helper buat dipake di html
 hbs.registerHelper('truncate', function (str, len) {
+  //assigned function helper buat dipake di html, ini buat ngedikitin kalimat di blog atau project
   if (str.length > len) {
     return str.substring(0, len) + `....<a href=/blog/${this.id}>Read more</a>`;
   }

@@ -28,6 +28,7 @@
         <!-- <a class="contactme" target="_blank" href="form" >Contact Me</a> -->
     </nav>
     <!-- NAV --> --}}
+    {{#unless user}}
     <h1 class="text-center mb-5"><b>REGISTER</b></h1>
     <form id="register-form" class='auth-form' method="post" action='/auth-register'>
         <div class='form-field'>
@@ -55,6 +56,10 @@
             <button class='btn btn-dark mb-5' type='submit'>Register</button>
         </div>
     </form>
+    {{/unless}}
+    {{#if user}}
+    <p class="text-center text-success">You're already logged in</p>
+    {{/if}}
     {{!--
 </body>
 

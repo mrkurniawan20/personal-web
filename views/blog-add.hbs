@@ -16,7 +16,8 @@
   <a class='contactme' target='_blank' href='form'>Contact Me</a>
 </nav> --}}
 <!-- NAV -->
-<h1 class="text-center">Create Post Blog</h1>
+{{#if user}}
+<h1 class="text-center"><b>Create Post Blog</b></h1>
 <!-- FORM -->
 <form action='' action="/blog" method="post">
   <div class='form-field'>
@@ -35,6 +36,11 @@
     <button class='btn btn-dark' type='submit'>create</button>
   </div>
 </form>
+{{/if}}
+
+{{#unless user}}
+<p class="text-center text-danger">You need to Sign In to add Blog</p>
+{{/unless}}
 
 <!-- BLOG LIST -->
 <script src='js/blog.js'></script>
