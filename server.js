@@ -48,14 +48,17 @@ const port = process.env.SERVER_PORT || 3000;
 // const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {
-  iconPath: '/img/icon.jpg',
-  cssPath: '/css/style.css',
+  iconPath: 'assets/img/icon.jpg',
+  cssPath: 'assets/css/style.css',
 };
+('nodemon server.js');
 
 app.set('view engine', 'hbs'); //setting view engine, pake hbs
 
 //modul yang dipake
-app.use(express.static('assets')); //ngasih tau kalo server menggunakan assigned static kaya css,image,js macem assets, di folder 'assets'
+// app.use(express.static('assets')); //ngasih tau kalo server menggunakan assigned static kaya css,image,js macem assets, di folder 'assets'
+
+app.use('/assets', express.static(path.join(__dirname, './assets'))); //untuk ngasih tujuan direktori uploads yang ada di multer ke direktori uploads yang ada di folder server
 app.use('/uploads', express.static(path.join(__dirname, './uploads'))); //untuk ngasih tujuan direktori uploads yang ada di multer ke direktori uploads yang ada di folder server
 app.use(express.json()); //ngasih tau kalo server menggunaka function json
 app.use(express.urlencoded({ extended: true })); //ngasih tau kalo server menggunakan urlencoded function buat ambil data dari html method kaya post/get. extended:true buat bisa pake nested array object, crucial buat kalo mau pake method post/get

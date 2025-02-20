@@ -1,6 +1,6 @@
 const icon = {
-  iconPath: '/img/icon.jpg',
-  cssPath: '/css/style.css',
+  iconPath: 'assets/img/icon.jpg',
+  cssPath: 'assets/css/style.css',
 };
 // let blogs = []; kalo blogs:blogs ambil dari sini
 
