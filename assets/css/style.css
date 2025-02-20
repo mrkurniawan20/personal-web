@@ -244,7 +244,7 @@ hr {
 }
 .skills {
   display: flex;
-  gap: 15px;
+  gap: 25px;
   padding: 0px;
 }
 .skills img {
@@ -431,7 +431,7 @@ option {
     margin: 2em auto;
   }
   .main-right {
-    width: 50%;
+    width: 70%;
     padding: 0;
     margin: 0 auto;
     border-radius: 10px;

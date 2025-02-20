@@ -18,6 +18,7 @@ async function renderIndex(req, res) {
   const user = await req.session.user; //untuk masukin session ke web page index
   res.render('index', {
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
+    title: 'Home',
     currentPage: 'home',
     ...icon,
   });
@@ -31,6 +32,7 @@ async function renderLogin(req, res) {
     res.render('auth-login', {
       user: user, //deklarasi user nya biar kena detect function session di web page tsb
       currentPage: 'login',
+      title: 'Login',
       ...icon,
     });
   }
@@ -44,6 +46,7 @@ async function renderRegister(req, res) {
     res.render('auth-register', {
       user: user, //deklarasi user nya biar kena detect function session di web page tsb
       currentPage: 'register',
+      title: 'Register',
       ...icon,
     });
   }
@@ -140,6 +143,7 @@ async function renderBlog(req, res) {
   //   console.log(blogs);
   res.render('blog', {
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
+    title: 'Blog',
     currentPage: 'blog',
     blogs: blogs,
     ...icon,
@@ -226,7 +230,7 @@ async function renderBlogEdit(req, res) {
     //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
     blog: chosenBlog, //nampilin blog
-    title: 'Blog Details',
+    title: 'Blog Edit',
     currentPage: 'blog',
     ...icon,
   });

@@ -7,17 +7,26 @@ function addProject(event) {
   let image = document.getElementById('image');
   let start = new Date(document.getElementById('start').value);
   let end = new Date(document.getElementById('end').value);
+  let skills = [];
+  document.querySelectorAll('[type="checkbox"]').forEach((item) => {
+    if (item.checked === true) {
+      skills.push(item.value);
+    }
+  });
+  console.log(skills);
 
   let imageFileName = URL.createObjectURL(image.files[0]);
-
   let project = {
     name: name,
     description: description,
     image: imageFileName,
+    skills: skills,
     start: start,
     end: end,
     relativeTime: new Date(),
   };
+  console.log(project.skills);
+  // mappedSkills = project.skills.map;
   projects.push(project);
 
   renderProject();
@@ -35,7 +44,6 @@ function addProject(event) {
   //   console.log(`${diffMonths} bulan`);
   // }
 }
-
 function getRelativeTime() {
   let start = new Date(document.getElementById('start').value);
   let end = new Date(document.getElementById('end').value);
@@ -56,7 +64,6 @@ function getRelativeTime() {
 
 function renderProject() {
   let projectContainerElement = document.getElementById('project-container');
-
   projectContainerElement.innerHTML = firstProject();
 
   for (let i = 0; i < projects.length; i++) {
@@ -69,12 +76,9 @@ function renderProject() {
             <p>${projects[i].description}</p>
           </div>
           
-          
           <div>
-            <ul class="skills">
-              <img src="img/nodejs.png" alt="" />
-              <img src="img/react.png" alt="" />
-              <img src="img/express.png" alt="" />
+            <ul class="skills" id="skills">
+            ${projects[i].skills.map((skill) => `<img src="img/${skill}" alt="${skill}">`).join('')}
             </ul>
             <ul class="button2">
               <button class="edit" id="edit">edit</button>
@@ -87,7 +91,7 @@ function renderProject() {
 }
 function firstProject() {
   return `
-        <article id="project" class="project">
+        <article id="fproject" class="project">
           <div>
             <img src="img/image1.jpg" alt="" />
             <h4>Dumbways Mobile App - 2021</h4>
@@ -98,12 +102,12 @@ function firstProject() {
           <div>
             <ul class="skills">
               <img src="img/nodejs.png" alt="" />
-              <img src="img/react.png" alt="" />
+              <img src="img/reactjs.png" alt="" />
               <img src="img/express.png" alt="" />
             </ul>
             <ul ul class="button2">
               <button class="edit" id="edit">edit</button>
-              <button class="delete" id="delete" onclick="deleteProject()">delete</button>
+              <button class="delete" id="delete" onclick="deleteFirstProject()">delete</button>
             </ul>
           </div>
               </ul>
@@ -111,6 +115,11 @@ function firstProject() {
           `;
 }
 renderProject();
+
+function deleteFirstProject() {
+  el = document.getElementById('fproject');
+  el.remove();
+}
 
 function deleteProject(i) {
   projects.splice(i, 1);
