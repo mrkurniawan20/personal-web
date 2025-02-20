@@ -5,6 +5,7 @@ const path = require('path'); //import modul path
 const flash = require('express-flash'); //import modul flash untuk ngasih info error/success
 const session = require('express-session'); //import modul session untuk kebutuhan session login/authentication
 const methodOverride = require('method-override'); //import modul methodOverride (download dulu, dependencies ada di package json)
+require('dotenv').config();
 
 // const upload = require('./middlewares/upload-file');
 const { formatDateToWIB, getRelativeTime } = require('./utils/time'); //import modul dari js time
@@ -42,7 +43,9 @@ const {
 } = require('./controllers/controller-v2'); //import modul dari js controller
 const upload = require('./middlewares/upload-file');
 const checkUser = require('./middlewares/auth');
-const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
+
+const port = process.env.SERVER_PORT || 3000;
+// const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {
   iconPath: '/img/icon.jpg',

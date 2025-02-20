@@ -7,7 +7,7 @@ const icon = {
 const { Sequelize } = require('sequelize'); //pake sequlize biar ga pake raw query kaya di controller v1
 const bcrypt = require('bcrypt'); //pake bcrypt buat enkripsi
 
-const config = require('../config/config.json'); //ambil config
+const config = require('../config/config.js'); //ambil config
 const { Blog, User } = require('../models'); //ambil Blog, sama User, ini table yang ada di sql
 
 const saltRounds = 10; //Untuk hashing berapa kali, sebenernya gausah dikasih vairable juga bisa, langusng angka di function

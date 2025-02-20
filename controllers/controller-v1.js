@@ -5,7 +5,7 @@ const icon = {
 };
 
 const { Sequelize, QueryTypes } = require('sequelize');
-const config = require('../config/config.json');
+const config = require('../config/config.js');
 const { Query } = require('pg');
 const sequelize = new Sequelize(config.development);
 
