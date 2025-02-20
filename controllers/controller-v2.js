@@ -12,7 +12,8 @@ const { Blog, User } = require('../models'); //ambil Blog, sama User, ini table 
 
 const saltRounds = 10; //Untuk hashing berapa kali, sebenernya gausah dikasih vairable juga bisa, langusng angka di function
 // const { renderBlogEdit } = require('./controller-v1');
-const sequelize = new Sequelize(config.development); //const sequelize buat masukin config ke function sequelize
+require('dotenv').config();
+const sequelize = new Sequelize(config[process.env.NODE_ENV]); //const sequelize buat masukin config ke function sequelize
 
 async function renderIndex(req, res) {
   const user = await req.session.user; //untuk masukin session ke web page index

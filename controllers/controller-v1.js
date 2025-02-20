@@ -7,7 +7,8 @@ const icon = {
 const { Sequelize, QueryTypes } = require('sequelize');
 const config = require('../config/config.js');
 const { Query } = require('pg');
-const sequelize = new Sequelize(config.development);
+require('dotenv').config();
+const sequelize = new Sequelize(config[process.env.NODE_ENV]);
 
 let blogs = [];
 
