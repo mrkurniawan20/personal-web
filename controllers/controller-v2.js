@@ -1,6 +1,6 @@
 const icon = {
-  iconPath: 'assets/img/icon.jpg',
-  cssPath: 'assets/css/style.css',
+  iconPath: '/assets/img/icon.jpg',
+  cssPath: '/assets/css/style.css',
 };
 // let blogs = []; kalo blogs:blogs ambil dari sini
 
@@ -27,7 +27,7 @@ async function renderIndex(req, res) {
 async function renderLogin(req, res) {
   const user = await req.session.user; //untuk masukin session ke web page login
   if (user) {
-    req.flash('warning', 'You already Logged In');
+    req.flash('success', 'You already Logged In');
     res.redirect('/');
   } else {
     res.render('auth-login', {
@@ -82,10 +82,10 @@ async function authLogin(req, res) {
     return res.redirect('/login');
   }
   let loggedInUser = user.toJSON(); //parsing user yang tadinya tipe data object ke JSON
-  console.log(loggedInUser); //console log user semua
+  // console.log(loggedInUser); //console log user semua
   //hapus passowrd di session
   delete loggedInUser.password; //delete ini assigned fucntion yang udh ada,
-  console.log(loggedInUser); //console log user setelah password didelete
+  // console.log(loggedInUser); //console log user setelah password didelete
 
   req.session.user = loggedInUser; // JSON user yang ada diganti dengan user yang sudah login
   req.flash('success', `Login Succeed, Welcome ${user.name}`); //********butuh ditanya, karena yang dijelasin ka leo pake 'loggedInUser.name' tapi cuma pake 'user.name' bisa
@@ -204,7 +204,7 @@ async function renderBlogDetail(req, res) {
     res.render('page-404');
   }
   // const chosenBlog = blogs[id]; //chosenBlog ngambil id dari blogs, misal index 0 = blog[0]
-  res.render('blog-detail', {
+  await res.render('blog-detail', {
     //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
     blog: chosenBlog, //nampilin blog
@@ -227,7 +227,7 @@ async function renderBlogEdit(req, res) {
   }
 
   // const chosenBlog = blogs[id]; //chosenBlog ngambil id dari blogs, misal index 0 = blog[0]
-  res.render('blog-edit', {
+  await res.render('blog-edit', {
     //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
     blog: chosenBlog, //nampilin blog
@@ -295,6 +295,16 @@ async function renderForm(req, res) {
     ...icon,
   });
 }
+
+async function renderProjects(req, res) {
+  const user = await req.session.user;
+  res.render('projects', {
+    user: user,
+    title: 'My Projects',
+    currentPage: 'myproject',
+    ...icon,
+  });
+}
 module.exports = {
   renderIndex,
   renderLogin,
@@ -312,4 +322,5 @@ module.exports = {
   createBlog,
   deleteBlog,
   updateBlog,
+  renderProjects,
 };

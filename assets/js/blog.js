@@ -34,7 +34,7 @@ function renderBlog() {
     blogListElement.innerHTML += `
             <article class="blog-item">
                 <div class="blog-image">
-                    <img src="assets/${blogs[index].image}" width="100%" alt="">
+                    <img src="/assets/${blogs[index].image}" width="100%" alt="">
                 </div>
                 <div class="blog-article">
                 <div class="blog-item-button">
@@ -54,7 +54,7 @@ function firstBlogContent() {
   return `
         <article class="blog-item">
         <div class="blog-image">
-          <img src="assets/img/cars.jpg" width="100%" alt="" />
+          <img src="/assets/img/cars.jpg" width="100%" alt="" />
         </div>
         <div class="blog-article">
           <div class="blog-item-button">

@@ -1,7 +1,7 @@
 //variable buat dipanggil
 const icon = {
-  iconPath: '/img/icon.jpg',
-  cssPath: '/css/style.css',
+  iconPath: '/assets/img/icon.jpg',
+  cssPath: '/assets/css/style.css',
 };
 
 const { Sequelize, QueryTypes } = require('sequelize');

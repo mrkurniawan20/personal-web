@@ -40,6 +40,7 @@ const {
   createBlog,
   deleteBlog,
   updateBlog,
+  renderProjects,
 } = require('./controllers/controller-v2'); //import modul dari js controller
 const upload = require('./middlewares/upload-file');
 const checkUser = require('./middlewares/auth');
@@ -48,8 +49,8 @@ const port = process.env.SERVER_PORT || 3000;
 // const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
 const icon = {
-  iconPath: 'assets/img/icon.jpg',
-  cssPath: 'assets/css/style.css',
+  iconPath: '/assets/img/icon.jpg',
+  cssPath: '/assets/css/style.css',
 };
 ('nodemon server.js');
 
@@ -135,6 +136,8 @@ app.post('/addblog', checkUser, upload.single('image'), createBlog); //image ini
 app.delete('/blog/:id', deleteBlog);
 //UNTUK EDIT BLOG
 app.patch('/blog-update/:id', updateBlog); //blog-update ini action yang dipanggil pada html, ada di blog-edit.hbs
+
+app.get('/projects', renderProjects);
 
 // app.get('/about/:id', (req, res) => {
 //   const id = req.params.id;

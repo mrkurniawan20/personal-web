@@ -13,7 +13,7 @@ function addProject(event) {
       skills.push(item.value);
     }
   });
-  console.log(skills);
+  // console.log(skills);
 
   let imageFileName = URL.createObjectURL(image.files[0]);
   let project = {
@@ -70,7 +70,7 @@ function renderProject() {
     projectContainerElement.innerHTML += `
         <article id="project" class="project">
           <div>
-            <img src="assets/${projects[i].image}" alt="" />
+            <img src="${projects[i].image}" alt="" />
             <h4>${projects[i].name}</h4>
             <p class="relative-time">durasi : ${getRelativeTime(projects[i].relativeTime)} bulan</p>
             <p>${projects[i].description}</p>
@@ -78,7 +78,7 @@ function renderProject() {
           
           <div>
             <ul class="skills" id="skills">
-            ${projects[i].skills.map((skill) => `<img src="assets/img/${skill}" alt="${skill}">`).join('')}
+            ${projects[i].skills.map((skill) => `<img src="/assets/img/${skill}" alt="${skill}">`).join('')}
             </ul>
             <ul class="button2">
               <button class="edit" id="edit">edit</button>
@@ -93,7 +93,7 @@ function firstProject() {
   return `
         <article id="fproject" class="project">
           <div>
-            <img src="assets/img/image1.jpg" alt="" />
+            <img src="/assets/img/image1.jpg" alt="" />
             <h4>Dumbways Mobile App - 2021</h4>
             <p class="relative-time">durasi : 3 bulan</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, atque.</p>
@@ -101,9 +101,9 @@ function firstProject() {
           
           <div>
             <ul class="skills">
-              <img src="assets/img/nodejs.png" alt="" />
-              <img src="assets/img/reactjs.png" alt="" />
-              <img src="assets/img/express.png" alt="" />
+              <img src="/assets/img/nodejs.png" alt="" />
+              <img src="/assets/img/reactjs.png" alt="" />
+              <img src="/assets/img/express.png" alt="" />
             </ul>
             <ul ul class="button2">
               <button class="edit" id="edit">edit</button>

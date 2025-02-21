@@ -19,14 +19,16 @@
     <!-- <a class="contactme" target="_blank" href="https://shorturl.at/SFVoV">Contact Me</a> -->
   </nav> --}}
   {{#>layout}}
-  <section class="blog-detail mx-auto">
-    <h1 class="text-center">{{blog.title}}</h1>
-    <p class="text-center">{{formatDateToWIB blog.createdAt}} | {{blog.authorId}}</p>
-    <img src="/{{blog.image}}" class="mb-5" alt="" width="70%" />
-    <p class="text-justify mb-5">
-      {{blog.content}}
-    </p>
-  </section>
+  <article class="blog-item">
+    <section class="blog-detail mx-auto">
+      <h1 class="text-center">{{blog.title}}</h1>
+      <p class="text-center">{{formatDateToWIB blog.createdAt}} | {{blog.authorId}}</p>
+      <img src="/{{blog.image}}" class="mb-5" alt="" width="70%" />
+      <p class="text-justify mb-5" style="width: 50%;">
+        {{blog.content}}
+      </p>
+    </section>
+  </article>
   {{/layout}}
   {{!--
 </body>
