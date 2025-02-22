@@ -29,9 +29,14 @@
 
     {{#>layout}}
     <!-- PROJECT LIST -->
-    <h1 class="text-center"><b>My Projects</b></h1>
-    <div class='project-list pb-5'>
-        <section class='project-container m-2' id='project-container'>
+    <h1 class="text-center mt-5 mb-5"><b>PROJECTS</b></h1>
+    {{#if user}}
+    <div class="text-center m-5">
+        <a class="btn btn-dark" href="addproject">CREATE PROJECT</a>
+    </div>
+    {{/if}}
+    <div class='project-list pb-5 pt-5'>
+        <section class='project-container m-5' id='project-container'>
             {{#each projects}}
             <article class='project'>
                 <img src='{{this.image}}' alt='' />
@@ -52,6 +57,7 @@
                     <img src='/assets/img/typescript.png' alt='Node.js' />
                     {{/if}}
                 </ul>
+                {{#if (eq ../user.id this.authorId)}}
                 <ul class='button2 text-center p-0 m-0'>
                     <li class="text-center">
                         <a href="/editproject/{{this.id}}" action="/project-edit/{{this.id}}"
@@ -63,10 +69,9 @@
                             <button onclick="return confirm('Are you sure you want to delete?')"
                                 class='btn btn-dark text-center' type="submit">Delete </button>
                         </form>
-
                     </li>
-
                 </ul>
+                {{/if}}
             </article>
             {{/each}}
         </section>

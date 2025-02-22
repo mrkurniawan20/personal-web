@@ -149,7 +149,7 @@ app.get('/testimonial', renderTestimonial);
 app.get('/form', renderForm);
 
 //RENDER MYPROJECT
-app.get('/project-add', checkUser, renderCreateProject);
+app.get('/addproject', checkUser, renderCreateProject);
 app.get('/projects', renderProjects);
 app.post('/project-add', checkUser, upload.single('image'), createProject);
 app.delete('/projects/:id', deleteProject);

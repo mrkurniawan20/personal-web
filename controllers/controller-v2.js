@@ -4,6 +4,9 @@ const icon = {
 };
 // let blogs = []; kalo blogs:blogs ambil dari sini
 
+//untuk format value tanggal jadi yyyy-mm-dd
+const { format } = require('date-fns');
+
 const { Sequelize } = require('sequelize'); //pake sequlize biar ga pake raw query kaya di controller v1
 const bcrypt = require('bcrypt'); //pake bcrypt buat enkripsi
 
@@ -349,9 +352,10 @@ async function createProject(req, res) {
     startDate: start,
     endDate: end,
     content: description,
-    skills: technologies.join(),
+    skills: technologies ? [].concat(technologies).join() : '',
   };
   const resultSubmit = await Project.create(newProject);
+  res.redirect('/projects');
   // console.log(newProject.technologies.split(','));
 }
 async function deleteProject(req, res) {
@@ -365,12 +369,15 @@ async function deleteProject(req, res) {
 }
 async function updateProject(req, res) {
   const id = req.params.id;
-  const { title, content } = req.body;
+  const { title, content, technologies, start, end } = req.body;
 
   const updateResult = await Project.update(
     {
       title: title,
       content: content,
+      skills: technologies ? [].concat(technologies).join() : '', //[].concat artinya tecnologies yang dichecked, dimasukin ke array kosong. lalu di join() dijadiin string
+      startDate: start,
+      endDate: end,
       updatedAt: sequelize.fn('NOW'),
     },
     {
@@ -394,10 +401,16 @@ async function renderProjectEdit(req, res) {
     return res.render('page-404');
   }
 
+  const start = format(chosenProject.startDate, 'yyyy-MM-dd');
+  const end = format(chosenProject.endDate, 'yyyy-MM-dd');
   await res.render('project-edit', {
     //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
-    project: chosenProject, //nampilin blog
+    project: {
+      ...chosenProject.get({ plain: true }),
+      startDate: start,
+      endDate: end,
+    }, //nampilin blog
     title: 'Project Edit',
     currentPage: 'project',
     ...icon,

@@ -3,12 +3,43 @@
 <!-- FORM -->
 <form action="/project-update/{{project.id}}?_method=PATCH" method="post">
   <div class='form-field'>
-    <label for='title'>Title</label>
-    <input name="title" type='text' id='title' value='{{project.title}}' required />
+    <label for='title'>Project Name</label>
+    <input name="title" type='text' id='title' value='{{project.title}}' />
+  </div>
+  <div class='form-date'>
+    <div class='start'>
+      <label for='start'>Start Date</label>
+      <input type='date' id='start' name="start" value="{{project.startDate}}" />
+    </div>
+    <div class='end'>
+      <label for='end'>End Date</label>
+      <input type='date' id='end' name="end" value="{{project.endDate}}" />
+    </div>
   </div>
   <div class='form-field'>
     <label for='content'>Your Project Content</label>
     <textarea name='content' id='content' rows='5'>{{project.content}}</textarea>
+  </div>
+  <div class='form-field-tech'>
+    <label for='technologies'>Technologies</label>
+    <div class='grid-container'>
+      <div class='grid'>
+        <input type='checkbox' id='nodejs' value='nodejs.png' name='technologies' />
+        <label for='nodejs'>Node JS</label>
+      </div>
+      <div class='grid'>
+        <input type='checkbox' id='express' value='express.png' name='technologies' />
+        <label for='express'>ExpressJS</label>
+      </div>
+      <div class='grid'>
+        <input type='checkbox' id='reactjs' value='reactjs.png' name='technologies' />
+        <label for='reactjs'>React JS</label>
+      </div>
+      <div class='grid'>
+        <input type='checkbox' id='typescript' value='typescript.png' name='technologies' />
+        <label for='typescript'>TypeScript</label>
+      </div>
+    </div>
   </div>
   <div class='form-field'>
     <label for='image'>Upload Image</label>

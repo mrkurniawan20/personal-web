@@ -138,10 +138,10 @@ function getDuration(start, end) {
   // console.log('selisih bulan ', diffMonths);
   // console.log(selisih);
   if (diffDays < 30) {
-    return `${diffDays} days`;
+    return `${diffDays} day${diffDays === 1 ? '' : 's'} `;
     // console.log(`${diffDays} hari`);
   } else {
-    return `${diffMonths} months`;
+    return `${diffMonths} month${diffMonths === 1 ? '' : 's'} `;
     // console.log(`${diffMonths} bulan`);
   }
 }
