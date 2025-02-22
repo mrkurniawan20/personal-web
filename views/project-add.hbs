@@ -30,20 +30,20 @@
   {{#>layout}}
   <h1 class="text-center pt-2"><b>ADD MY PROJECT</b></h1>
   <!-- FORM -->
-  <form action='' onsubmit='addProject(event)'>
+  <form action='/project-add' method="post" enctype="multipart/form-data" onsubmit=''>
     <div class='form-field'>
       <label for='name'>Project Name</label>
-      <input type='text' id='name' required />
+      <input type='text' id='name' name="name" required />
     </div>
 
     <div class='form-date'>
       <div class='start'>
         <label for='start'>Start Date</label>
-        <input type='date' id='start' required />
+        <input type='date' id='start' name="start" required />
       </div>
       <div class='end'>
         <label for='end'>End Date</label>
-        <input type='date' id='end' required />
+        <input type='date' id='end' name="end" required />
       </div>
     </div>
     <div class='form-field'>
@@ -54,19 +54,19 @@
       <label for='technologies'>Technologies</label>
       <div class='grid-container'>
         <div class='grid'>
-          <input type='checkbox' id='nodejs' value='nodejs.png' name='nodejs' />
+          <input type='checkbox' id='nodejs' value='nodejs.png' name='technologies' />
           <label for='nodejs'>Node JS</label>
         </div>
         <div class='grid'>
-          <input type='checkbox' id='express' value='express.png' name='express' />
+          <input type='checkbox' id='express' value='express.png' name='technologies' />
           <label for='express'>ExpressJS</label>
         </div>
         <div class='grid'>
-          <input type='checkbox' id='reactjs' value='reactjs.png' name='reactjs' />
+          <input type='checkbox' id='reactjs' value='reactjs.png' name='technologies' />
           <label for='reactjs'>React JS</label>
         </div>
         <div class='grid'>
-          <input type='checkbox' id='typescript' value='typescript.png' name='typescript' />
+          <input type='checkbox' id='typescript' value='typescript.png' name='technologies' />
           <label for='typescript'>TypeScript</label>
         </div>
       </div>
@@ -79,28 +79,4 @@
       <button class='btn btn-dark' type='submit'>submit</button>
     </div>
   </form>
-
-  <!-- PROJECT LIST -->
-  <div class='project-list pb-5'>
-    <h1 class="text-center">My Project</h1>
-    <section class='project-container' id='project-container'>
-      {{!-- <article id='fproject' class='project'>
-        <img src='img/image1.jpg' alt='' />
-        <h2>Dumbways Mobile App - 2021</h2>
-        <p class='relative-time'>durasi : 3 bulan</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, atque.</p>
-        <ul class='skills'>
-          <img src='img/nodejs.png' alt='' />
-          <img src='img/reactjs.png' alt='' />
-          <img src='img/express.png' alt='' />
-        </ul>
-        <ul class='button2 text-center'>
-          <button class='edit' id='edit'>edit</button>
-          <button class='delete' id='delete' onclick='deleteFirstProject()'>delete</button>
-        </ul>
-      </article> --}}
-    </section>
-  </div>
-
-  <script src='/assets/js/myproject.js'></script>
   {{/layout}}

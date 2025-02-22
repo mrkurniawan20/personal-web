@@ -253,27 +253,30 @@ hr {
 .button2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin: auto 0 10px 0;
-  padding: 0;
   gap: 10px;
+  /* margin: auto 0 10px 0;  */
+  /* padding: 0; */
+  /* gap: 10px; */
   /* display: flex;
   justify-content: space-evenly; */
   /* margin: 30px 0 0 10px; */
 }
-.button2 .edit,
-.button2 .delete {
-  background-color: #070d0d;
-  color: white;
-  border: none;
-  font-size: large;
-  border-radius: 8px;
-  font-family: Poppins;
-  cursor: pointer;
+.button2 li {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
 }
-.button2 .edit:hover,
-.button2 .delete:hover {
-  background-color: grey;
-  border: 1px solid grey;
+.button li a {
+  display: flex;
+  width: 100%;
+  margin: 0;
+}
+.button2 li form {
+  display: contents !important;
+}
+.button2 li form,
+.button2 li .btn {
+  flex: 1;
 }
 
 /* BLOG CSS */

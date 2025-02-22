@@ -128,7 +128,26 @@ function getRelativeTime(postTime) {
   return `${diffInMonth} month${diffInMonth === 1 ? '' : 's'} ago`;
 }
 
+function getDuration(start, end) {
+  let startDuration = new Date(start);
+  let endDuration = new Date(end);
+  const selisih = endDuration - startDuration;
+  diffDays = Math.floor(selisih / 1000 / 60 / 60 / 24);
+  // console.log('selisih hari ', diffDays);
+  diffMonths = Math.floor(diffDays / 30);
+  // console.log('selisih bulan ', diffMonths);
+  // console.log(selisih);
+  if (diffDays < 30) {
+    return `${diffDays} days`;
+    // console.log(`${diffDays} hari`);
+  } else {
+    return `${diffMonths} months`;
+    // console.log(`${diffMonths} bulan`);
+  }
+}
+
 module.exports = {
   formatDateToWIB,
   getRelativeTime,
+  getDuration,
 };

@@ -8,7 +8,25 @@ const { Sequelize } = require('sequelize'); //pake sequlize biar ga pake raw que
 const bcrypt = require('bcrypt'); //pake bcrypt buat enkripsi
 
 const config = require('../config/config.js'); //ambil config
-const { Blog, User } = require('../models'); //ambil Blog, sama User, ini table yang ada di sql
+const { Blog, User, Project } = require('../models'); //ambil Blog, sama User, ini table yang ada di sql
+
+//test create project
+// async function createProject() {
+//   try {
+//     const newProject = await Project.create({
+//       authorId: 1,
+//       title: 'My First Project',
+//       image: 'project.png',
+//       content: 'This is the project content.',
+//       skills: 'JavaScript,Node.js,Sequelize', // Assuming skills are stored as a comma-separated string
+//     });
+//     console.log(newProject);
+//   } catch (err) {
+//     console.error('Error creating project:', err);
+//   }
+// }
+
+// createProject();
 
 const saltRounds = 10; //Untuk hashing berapa kali, sebenernya gausah dikasih vairable juga bisa, langusng angka di function
 // const { renderBlogEdit } = require('./controller-v1');
@@ -266,16 +284,6 @@ async function updateBlog(req, res) {
   res.redirect('/blog');
 }
 
-async function renderProject(req, res) {
-  const user = await req.session.user;
-  res.render('myproject', {
-    user: user, //deklarasi user nya biar kena detect function session di web page tsb
-    title: 'My Project',
-    currentPage: 'myproject',
-    ...icon,
-  });
-}
-
 async function renderTestimonial(req, res) {
   const user = await req.session.user;
   res.render('testimonial', {
@@ -298,10 +306,100 @@ async function renderForm(req, res) {
 
 async function renderProjects(req, res) {
   const user = await req.session.user;
+  const projects = await Project.findAll({
+    order: [['createdAt', 'DESC']],
+  });
+  // for (let i = 0; i < projects.length; i++) {
+  //   skillSet = projects[i].skills.split(',');
+  // }
+  // const tech = projects.skills.split(',');
+  const mappedProjects = projects.map((project) => {
+    return {
+      ...project.get({ plain: true }), // Get plain object to avoid Sequelize issues
+      skillSet: project.skills ? project.skills.split(',') : [], // Split or create empty array
+    };
+  });
   res.render('projects', {
     user: user,
     title: 'My Projects',
-    currentPage: 'myproject',
+    currentPage: 'projects',
+    projects: mappedProjects,
+    ...icon,
+  });
+}
+
+async function renderCreateProject(req, res) {
+  const user = await req.session.user;
+  res.render('project-add', {
+    user: user, //deklarasi user nya biar kena detect function session di web page tsb
+    title: 'Create Project',
+    currentPage: 'add-project',
+    ...icon,
+  });
+}
+async function createProject(req, res) {
+  const user = await req.session.user;
+  const { name, start, end, description, technologies } = req.body;
+  // const image = req.file.path
+  const image = req.file.path;
+  const newProject = {
+    title: name,
+    authorId: user.id,
+    image: image,
+    startDate: start,
+    endDate: end,
+    content: description,
+    skills: technologies.join(),
+  };
+  const resultSubmit = await Project.create(newProject);
+  // console.log(newProject.technologies.split(','));
+}
+async function deleteProject(req, res) {
+  const { id } = req.params;
+  const delteResult = await Project.destroy({
+    where: {
+      id: id,
+    },
+  });
+  res.redirect('/projects');
+}
+async function updateProject(req, res) {
+  const id = req.params.id;
+  const { title, content } = req.body;
+
+  const updateResult = await Project.update(
+    {
+      title: title,
+      content: content,
+      updatedAt: sequelize.fn('NOW'),
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  );
+  res.redirect('/projects');
+}
+
+async function renderProjectEdit(req, res) {
+  const id = req.params.id;
+  const user = await req.session.user;
+  const chosenProject = await Project.findOne({
+    where: {
+      id: id,
+    },
+  });
+  if (chosenProject === null) {
+    return res.render('page-404');
+  }
+
+  await res.render('project-edit', {
+    //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
+    user: user, //deklarasi user nya biar kena detect function session di web page tsb
+    project: chosenProject, //nampilin blog
+    title: 'Project Edit',
+    currentPage: 'project',
     ...icon,
   });
 }
@@ -316,11 +414,15 @@ module.exports = {
   renderBlogDetail,
   renderBlogEdit,
   renderCreateBlog,
-  renderProject,
+  renderCreateProject,
   renderTestimonial,
   renderForm,
   createBlog,
   deleteBlog,
   updateBlog,
   renderProjects,
+  renderProjectEdit,
+  createProject,
+  deleteProject,
+  updateProject,
 };

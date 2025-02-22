@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'authorId',
         as: 'blogs',
       });
+
+      User.hasMany(models.Project, {
+        foreignKey: 'authorId',
+        as: 'projects',
+      });
     }
   }
   //GA ADA ID KARENA ID OTOMATIS DIBUATIN SAMA SEQUELIZE, BAIK BGT XIXIXI

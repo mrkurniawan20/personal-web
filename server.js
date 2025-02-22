@@ -8,7 +8,7 @@ const methodOverride = require('method-override'); //import modul methodOverride
 require('dotenv').config();
 
 // const upload = require('./middlewares/upload-file');
-const { formatDateToWIB, getRelativeTime } = require('./utils/time'); //import modul dari js time
+const { formatDateToWIB, getRelativeTime, getDuration } = require('./utils/time'); //import modul dari js time
 const {
   /*renderIndex,*/
   /*renderBlog,*/
@@ -41,6 +41,11 @@ const {
   deleteBlog,
   updateBlog,
   renderProjects,
+  createProject,
+  renderCreateProject,
+  deleteProject,
+  updateProject,
+  renderProjectEdit,
 } = require('./controllers/controller-v2'); //import modul dari js controller
 const upload = require('./middlewares/upload-file');
 const checkUser = require('./middlewares/auth');
@@ -88,6 +93,16 @@ hbs.registerHelper('truncate', function (str, len) {
   return str;
 });
 
+//registerHelper durasi project
+hbs.registerHelper('getDuration', getDuration);
+//registerHelper contain skills
+hbs.registerHelper('containsSkill', function (skillSet, skill) {
+  if (Array.isArray(skillSet) && skill) {
+    return skillSet.includes(skill);
+  }
+  return false; // Return false if skillSet is not an array or skill is missing.
+});
+
 // GET METHOD SEBELUM PAKAI MODUL
 
 // app.get('/blog', (req, res) => {
@@ -111,11 +126,8 @@ app.get('/login', renderLogin);
 app.get('/register', renderRegister);
 app.post('/auth-login', authLogin);
 app.post('/auth-register', authRegister);
-
 app.get('/logout', authLogout);
 
-//RENDER MYPROJECT
-app.get('/myproject', renderProject);
 //RENDER BLOG
 app.get('/blog', renderBlog);
 //RENDER CREATE BLOG
@@ -124,20 +136,25 @@ app.get('/addblog', checkUser, renderCreateBlog);
 app.get('/blog/:id', renderBlogDetail);
 //RENDER BLOT EDIT
 app.get('/editblog/:id', checkUser, renderBlogEdit);
+//SUBMIT ADD BLOG ^^
+app.post('/addblog', checkUser, upload.single('image'), createBlog); //image ini korelasinya di upload file js bagian fieldname
+//DELETE BLOG DI URL BLOG
+app.delete('/blog/:id', deleteBlog);
+//UNTUK EDIT BLOG
+app.patch('/blog-update/:id', checkUser, updateBlog); //blog-update ini action yang dipanggil pada html, ada di blog-edit.hbs
+
 //RENDER TESTIMONIAL
 app.get('/testimonial', renderTestimonial);
 //RENDER FORM CONTACT
 app.get('/form', renderForm);
 
-//SUBMIT ADD BLOG ^^
-app.post('/addblog', checkUser, upload.single('image'), createBlog); //image ini korelasinya di upload file js bagian fieldname
-
-//DELETE BLOG DI URL BLOG
-app.delete('/blog/:id', deleteBlog);
-//UNTUK EDIT BLOG
-app.patch('/blog-update/:id', updateBlog); //blog-update ini action yang dipanggil pada html, ada di blog-edit.hbs
-
+//RENDER MYPROJECT
+app.get('/project-add', checkUser, renderCreateProject);
 app.get('/projects', renderProjects);
+app.post('/project-add', checkUser, upload.single('image'), createProject);
+app.delete('/projects/:id', deleteProject);
+app.get('/editproject/:id', checkUser, renderProjectEdit);
+app.patch('/project-update/:id', checkUser, updateProject);
 
 // app.get('/about/:id', (req, res) => {
 //   const id = req.params.id;

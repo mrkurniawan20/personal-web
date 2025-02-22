@@ -29,26 +29,46 @@
 
     {{#>layout}}
     <!-- PROJECT LIST -->
+    <h1 class="text-center"><b>My Projects</b></h1>
     <div class='project-list pb-5'>
-        <h1 class="text-center"><b>My Projects </b></h1>
         <section class='project-container m-2' id='project-container'>
-            {{!-- <article id='fproject' class='project'>
-                <img src='img/image1.jpg' alt='' />
-                <h2>Dumbways Mobile App - 2021</h2>
-                <p class='relative-time'>durasi : 3 bulan</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, atque.</p>
+            {{#each projects}}
+            <article class='project'>
+                <img src='{{this.image}}' alt='' />
+                <h2>{{this.title}}</h2>
+                <p class='relative-time'>{{getDuration this.startDate this.endDate}}</p>
+                <p>{{this.content}}</p>
                 <ul class='skills'>
-                    <img src='img/nodejs.png' alt='' />
-                    <img src='img/reactjs.png' alt='' />
-                    <img src='img/express.png' alt='' />
+                    {{#if (containsSkill this.skillSet 'nodejs.png')}}
+                    <img src='/assets/img/nodejs.png' alt='Node.js' />
+                    {{/if}}
+                    {{#if (containsSkill this.skillSet 'reactjs.png')}}
+                    <img src='/assets/img/reactjs.png' alt='Node.js' />
+                    {{/if}}
+                    {{#if (containsSkill this.skillSet 'express.png')}}
+                    <img src='/assets/img/express.png' alt='Node.js' />
+                    {{/if}}
+                    {{#if (containsSkill this.skillSet 'typescript.png')}}
+                    <img src='/assets/img/typescript.png' alt='Node.js' />
+                    {{/if}}
                 </ul>
-                <ul class='button2 text-center'>
-                    <button class='edit' id='edit'>edit</button>
-                    <button class='delete' id='delete' onclick='deleteFirstProject()'>delete</button>
+                <ul class='button2 text-center p-0 m-0'>
+                    <li class="text-center">
+                        <a href="/editproject/{{this.id}}" action="/project-edit/{{this.id}}"
+                            class='btn btn-dark text-center'>
+                            Edit</a>
+                    </li>
+                    <li class="text-center">
+                        <form style="display:inline" action="/projects/{{this.id}}?_method=DELETE" method="post">
+                            <button onclick="return confirm('Are you sure you want to delete?')"
+                                class='btn btn-dark text-center' type="submit">Delete </button>
+                        </form>
+
+                    </li>
+
                 </ul>
-            </article> --}}
+            </article>
+            {{/each}}
         </section>
     </div>
-
-    <script src='/assets/js/myproject.js'></script>
     {{/layout}}
