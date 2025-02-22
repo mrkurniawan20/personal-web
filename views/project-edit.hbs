@@ -24,19 +24,23 @@
     <label for='technologies'>Technologies</label>
     <div class='grid-container'>
       <div class='grid'>
-        <input type='checkbox' id='nodejs' value='nodejs.png' name='technologies' />
+        <input type='checkbox' id='nodejs' value='nodejs.png' name='technologies' {{#if (containsSkill
+          project.skills 'nodejs.png' )}}checked{{/if}} />
         <label for='nodejs'>Node JS</label>
       </div>
       <div class='grid'>
-        <input type='checkbox' id='express' value='express.png' name='technologies' />
+        <input type='checkbox' id='express' value='express.png' name='technologies' {{#if (containsSkill
+          project.skills 'express.png' )}}checked{{/if}} />
         <label for='express'>ExpressJS</label>
       </div>
       <div class='grid'>
-        <input type='checkbox' id='reactjs' value='reactjs.png' name='technologies' />
+        <input type='checkbox' id='reactjs' value='reactjs.png' name='technologies' {{#if (containsSkill
+          project.skills 'reactjs.png' )}}checked{{/if}} />
         <label for='reactjs'>React JS</label>
       </div>
       <div class='grid'>
-        <input type='checkbox' id='typescript' value='typescript.png' name='technologies' />
+        <input type='checkbox' id='typescript' value='typescript.png' name='technologies' {{#if (containsSkill
+          project.skills 'typescript.png' )}}checked{{/if}} />
         <label for='typescript'>TypeScript</label>
       </div>
     </div>

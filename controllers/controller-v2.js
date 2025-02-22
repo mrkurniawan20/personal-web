@@ -403,6 +403,7 @@ async function renderProjectEdit(req, res) {
 
   const start = format(chosenProject.startDate, 'yyyy-MM-dd');
   const end = format(chosenProject.endDate, 'yyyy-MM-dd');
+  const skillsArray = chosenProject.skills ? chosenProject.skills.split(',') : [];
   await res.render('project-edit', {
     //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
@@ -410,6 +411,7 @@ async function renderProjectEdit(req, res) {
       ...chosenProject.get({ plain: true }),
       startDate: start,
       endDate: end,
+      skills: skillsArray,
     }, //nampilin blog
     title: 'Project Edit',
     currentPage: 'project',
