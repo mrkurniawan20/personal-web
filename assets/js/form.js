@@ -7,7 +7,7 @@ function form(event) {
   let toEmail = 'luigiguido45@gmail.com';
   event.preventDefault();
   let a = document.createElement('a');
-  a.href = `mailto:${toEmail}?subject=${subject}&body=${`Hello good sir, my name is ${name}, you can contact me at ${phoneno} and here's my message  : \n   ${message}`}`;
+  a.href = `mailto:${toEmail}?subject=${subject}&body=${`Hello good sir, my name is ${name}, you can contact me at ${phoneno} and here's my message  : %0D%0A%0D%0A   ${message}`}`;
   a.click();
   //   alert(name);
 }
