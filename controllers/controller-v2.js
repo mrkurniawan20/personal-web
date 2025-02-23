@@ -3,6 +3,10 @@ const icon = {
   cssPath: '/assets/css/style.css',
 };
 // let blogs = []; kalo blogs:blogs ambil dari sini
+// import Swal from 'sweetalert2';
+
+// or via CommonJS
+// const Swal = require('sweetalert2');
 
 //untuk format value tanggal jadi yyyy-mm-dd
 const { format } = require('date-fns');
@@ -216,6 +220,11 @@ async function renderBlogDetail(req, res) {
   const id = req.params.id; //params yang /:id di blog
   const user = await req.session.user;
   const chosenBlog = await Blog.findOne({
+    include: {
+      model: User,
+      as: 'user',
+      attributes: { exclude: ['password'] }, //untuk exclude password just in case someone could see
+    },
     where: {
       id: id,
     },

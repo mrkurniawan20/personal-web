@@ -80,8 +80,9 @@
       <div class='blog-item-button text-end'>
         <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='btn btn-warning'> <span>Edit
             Blog</span><i class="fas fa-edit"></i></a>
-        <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post">
-          <button onclick="return confirm('Are you sure you want to delete?')" class='btn btn-danger' type="submit">
+        <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post"
+          onclick="return submitForm(this, event)">
+          <button onclick="" class='btn btn-danger' type="submit">
             <span>Delete
               Blog</span><i class="fa-solid fa-trash"></i></button>
         </form>
@@ -105,5 +106,31 @@
 </section> --}}
 {{!--
 <script src='js/blog.js'></script> --}}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'
+<script>
+  function submitForm(form, event) {
+    event.preventDefault();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        }).then(() => {
+          form.submit()
+        })
+      }
+    });
+  }
+</script>
 
 {{/layout}}
