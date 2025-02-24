@@ -34,7 +34,6 @@ const {
   renderBlogDetail,
   renderBlogEdit,
   renderCreateBlog,
-  renderProject,
   renderTestimonial,
   renderForm,
   createBlog,

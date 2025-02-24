@@ -49,6 +49,9 @@ nav ul {
   list-style-type: none;
   gap: 40px;
 }
+.navbar-brand:hover {
+  filter: grayscale(50%);
+}
 
 /* MAIN CONTENT */
 main {

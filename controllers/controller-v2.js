@@ -3,10 +3,6 @@ const icon = {
   cssPath: '/assets/css/style.css',
 };
 // let blogs = []; kalo blogs:blogs ambil dari sini
-// import Swal from 'sweetalert2';
-
-// or via CommonJS
-// const Swal = require('sweetalert2');
 
 //untuk format value tanggal jadi yyyy-mm-dd
 const { format } = require('date-fns');
