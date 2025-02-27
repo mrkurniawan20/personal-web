@@ -29,7 +29,7 @@
   </nav>
   <!-- NAV --> --}}
   <h1 class="text-center"><b>GET IN TOUCH</b></h1>
-  <form class='contact-form' action='' onsubmit='form(event)'>
+  <form class='contact-form' action='' onsubmit='return submitForm(event)'>
     <div class='form-field'>
       <label for='name'>Name</label>
       <input type='text' id='name' required />
@@ -58,7 +58,32 @@
       <button class='btn btn-dark mb-5' type='submit'>submit</button>
     </div>
   </form>
-  <script src='/assets/js/form.js'></script>
+  {{!--
+  <script src='/assets/js/form.js'></script> --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    async function submitForm(event) {
+      let name = document.getElementById('name').value;
+      let email = document.getElementById('email').value;
+      let phoneno = document.getElementById('phoneno').value;
+      let message = document.getElementById('message').value;
+      let subject = document.getElementById('subject').value;
+      let toEmail = 'luigiguido45@gmail.com';
+      event.preventDefault();
+      await Swal.fire({
+        icon: 'success',
+        title: 'Thank You for Contacting Us',
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => {
+        let a = document.createElement('a');
+        a.href = `mailto:${toEmail}?subject=${subject}&body=${`Hello good sir, my name is ${name}, you can contact me at ${phoneno} or directly reply to this email, here's my message  : %0D%0A%0D%0A   ${message}`}`;
+        a.click();
+      })
+
+      //   alert(name);
+    }
+  </script>
   {{!--
 </body>
 

@@ -157,7 +157,7 @@ async function renderBlog(req, res) {
   const blogs = await Blog.findAll({
     include: {
       model: User,
-      as: 'user',
+      as: 'user', //manggil assosiates model user pake variable user. jadi bisa ambil blog.user.name (nama dari user, foreign key nya dari authorID)
       attributes: { exclude: ['password'] }, //untuk exclude password just in case someone could see
     },
     order: [['createdAt', 'DESC']],
@@ -189,9 +189,9 @@ async function createBlog(req, res) {
   const { title, content } = req.body; //ngambil title sama content dari body, essentially "title = req.body.title"
   // let dummyImage = 'https://i.redd.it/show-me-your-silly-cats-v0-wplu39sp6l1d1.jpg?width=4032&format=pjpg&auto=webp&s=9970c7152419d80629bc8a7e94ea556b9779f833'; UDAH GAPAKE BROW
 
-  const image = req.file.path;
-  console.log(image);
-  console.log(req.body);
+  const image = req.file.path; // req.file.path ini dari file.path yang diimport pake modul upload-file.js - kalo kaya gini doang, image harus diupload karena kalo engga nanti 'path' nya gaada
+  // console.log(image);
+  // console.log(req.body);
   const newBlog = {
     title, //title : title
     content, //samme^, just using cleaner way
@@ -276,16 +276,18 @@ async function deleteBlog(req, res) {
 async function updateBlog(req, res) {
   const id = req.params.id;
   const { title, content } = req.body;
-
+  const image = req.file ? req.file.path : null; //ini kalo update begini karena jika edit blog dan ga masukin image, nanti dia error, 'path' undefined, jadi kalo misal ga upload image, diisinya 'null'
+  const project = await Project.findByPk(id); //ini ambil project, berguna untuk bagian yang tidak di update/edit
   const updateResult = await Blog.update(
     {
       title,
       content,
-      updatedAt: sequelize.fn('NOW'),
+      image: image ?? project.image, //ini conditional statement, jika image == null, maka ambil dari project.image, project nya sudah di declare di atas, ambil dari Project.findByPk(id)
+      updatedAt: sequelize.fn('NOW'), //ini function sequelize 'NOW'
     },
     {
       where: {
-        id,
+        id, //ini buat tau update nya database yang mana
       },
     }
   );
@@ -323,8 +325,8 @@ async function renderProjects(req, res) {
   // const tech = projects.skills.split(',');
   const mappedProjects = projects.map((project) => {
     return {
-      ...project.get({ plain: true }), // Get plain object to avoid Sequelize issues
-      skillSet: project.skills ? project.skills.split(',') : [], // Split or create empty array
+      ...project.get({ plain: true }), // project(yang tadinya tipe datanya sequelize instance model) nya dijadiin object plain, isinya semuanya seperti biasa, dan nambahin key skillSet di bawah
+      skillSet: project.skills ? project.skills.split(',') : [], // di mapped pake skillSet, jadi yang tadinya string, jadi array. dimasukin ke array kosong. map() basically looping. jadi dia ambil project skills. di split berdasarkan koma, lalu dimasukin ke array. jika skills tidak ada, dia akan return array kosong " :[]"
     };
   });
   res.render('projects', {
@@ -347,7 +349,7 @@ async function renderCreateProject(req, res) {
 }
 async function createProject(req, res) {
   const user = await req.session.user;
-  const { name, start, end, description, technologies } = req.body;
+  const { name, start, end, description, technologies } = req.body; //req.body ini ambil dari 'name' value yang ada di form, jadi 'name' value harus ada di form
   // const image = req.file.path
   const image = req.file.path;
   const newProject = {
@@ -357,7 +359,7 @@ async function createProject(req, res) {
     startDate: start,
     endDate: end,
     content: description,
-    skills: technologies ? [].concat(technologies).join() : '',
+    skills: technologies ? [].concat(technologies).join() : '', // concat disini berfungsi untuk jika skill yang dicheck cuma 1 atau null, karena kalo 1 dia tipe datanya jadinya string, dan dimasukin ke array kosong ([].concat(technologies)). yang artinya technologies disitu dijoin di dalam array kosong yang punya function concat. lalu jika sudah dia dipakein function join() buat balikin ke string, biar disimpen di db jadinya string, nah jika kosong, dia akan return string kosong saja (:'')
   };
   const resultSubmit = await Project.create(newProject);
   res.redirect('/projects');
@@ -372,10 +374,12 @@ async function deleteProject(req, res) {
   });
   res.redirect('/projects');
 }
+
 async function updateProject(req, res) {
   const id = req.params.id;
   const { title, content, technologies, start, end } = req.body;
-
+  const image = req.file ? req.file.path : null; //req file bisa diisi bisa tidak,
+  const project = await Project.findByPk(id); //declare/mengambil project yang sudah ada di db(untuk bagian image karena image menggunakan .path jadi harus diisi jika tidak maka hasilnya undefined)
   const updateResult = await Project.update(
     {
       title: title,
@@ -383,6 +387,7 @@ async function updateProject(req, res) {
       skills: technologies ? [].concat(technologies).join() : '', //[].concat artinya tecnologies yang dichecked, dimasukin ke array kosong. lalu di join() dijadiin string
       startDate: start,
       endDate: end,
+      image: image ?? project.image, //conditional statement, jika image nya ada(true) dia akan ambil image(dari req.file.path) jika tidak ada dia ambil dari project.image yang sudah dideclare
       updatedAt: sequelize.fn('NOW'),
     },
     {
@@ -403,20 +408,21 @@ async function renderProjectEdit(req, res) {
     },
   });
   if (chosenProject === null) {
+    //kalo id nya gaada, dia akan return page404
     return res.render('page-404');
   }
 
-  const start = format(chosenProject.startDate, 'yyyy-MM-dd');
-  const end = format(chosenProject.endDate, 'yyyy-MM-dd');
+  const start = format(chosenProject.startDate, 'yyyy-MM-dd'); //method 'format' ini ddiambil dari import package 'date-fns' untuk nge format date jadi 'yyyy-mm-dd' karena di db ga kaya gitu
+  const end = format(chosenProject.endDate, 'yyyy-MM-dd'); //sama kaya start
   const skillsArray = chosenProject.skills ? chosenProject.skills.split(',') : [];
   await res.render('project-edit', {
     //UPDATE:  TIPE DATA TIDAK PERLU PAKE INDEX KAYA PAKE V1, KARENA TIPE DATANYA SUDAH OBJECT, BUKAN ARRAY
     user: user, //deklarasi user nya biar kena detect function session di web page tsb
     project: {
-      ...chosenProject.get({ plain: true }),
-      startDate: start,
-      endDate: end,
-      skills: skillsArray,
+      ...chosenProject.get({ plain: true }), //dijadiin plain object dengan isi key dan value yang sama kecuali yang di bawah
+      startDate: start, //startDate sudah memakai format date-fns
+      endDate: end, //endDate sudah memakai format date-fns
+      skills: skillsArray, //skillSet menjadi array
     }, //nampilin blog
     title: 'Project Edit',
     currentPage: 'project',

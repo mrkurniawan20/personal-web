@@ -164,7 +164,8 @@
         </li>
         {{/unless}}
         <li class="nav-item">
-          <a href="/form" class="nav-link " style="padding:0"><button type="button" class="btn btn-dark">CONTACT
+          <a href="/form" class="nav-link {{#if (eq currentPage 'form')}}active{{/if}}" style="padding:0"><button
+              type="button" class="btn btn-dark">CONTACT
               ME</button></a>
         </li>
       </ul>

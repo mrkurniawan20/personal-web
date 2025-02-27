@@ -1,7 +1,7 @@
 {{#>layout}}
 <h1 class="text-center"><b>Edit Blog</b></h1>
 <!-- FORM -->
-<form action="/blog-update/{{blog.id}}?_method=PATCH" method="post">
+<form action="/blog-update/{{blog.id}}?_method=PATCH" method="post" enctype="multipart/form-data">
   <div class='form-field'>
     <label for='title'>Title</label>
     <input name="title" type='text' id='title' value='{{blog.title}}' />

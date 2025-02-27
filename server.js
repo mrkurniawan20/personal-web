@@ -52,6 +52,7 @@ const checkUser = require('./middlewares/auth');
 const port = process.env.SERVER_PORT || 3000;
 // const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
 
+//bikin variable yang bisa dipanggil
 const icon = {
   iconPath: '/assets/img/icon.jpg',
   cssPath: '/assets/css/style.css',
@@ -140,7 +141,7 @@ app.post('/addblog', checkUser, upload.single('image'), createBlog); //image ini
 //DELETE BLOG DI URL BLOG
 app.delete('/blog/:id', deleteBlog);
 //UNTUK EDIT BLOG
-app.patch('/blog-update/:id', checkUser, updateBlog); //blog-update ini action yang dipanggil pada html, ada di blog-edit.hbs
+app.patch('/blog-update/:id', checkUser, upload.single('image'), updateBlog); //blog-update ini action yang dipanggil pada html, ada di blog-edit.hbs
 
 //RENDER TESTIMONIAL
 app.get('/testimonial', renderTestimonial);
@@ -153,7 +154,7 @@ app.get('/projects', renderProjects);
 app.post('/project-add', checkUser, upload.single('image'), createProject);
 app.delete('/projects/:id', deleteProject);
 app.get('/editproject/:id', checkUser, renderProjectEdit);
-app.patch('/project-update/:id', checkUser, updateProject);
+app.patch('/project-update/:id', checkUser, upload.single('image'), updateProject);
 
 // app.get('/about/:id', (req, res) => {
 //   const id = req.params.id;

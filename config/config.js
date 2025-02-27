@@ -1,6 +1,6 @@
-require('dotenv').config();
+require('dotenv').config(); //import dotenv buat isi posgres
 
-const pg = require('pg');
+const pg = require('pg'); //modul pg
 
 module.exports = {
   development: {
