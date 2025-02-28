@@ -46,8 +46,8 @@ const {
   updateProject,
   renderProjectEdit,
 } = require('./controllers/controller-v2'); //import modul dari js controller
-const upload = require('./middlewares/upload-file');
-const checkUser = require('./middlewares/auth');
+const upload = require('./middlewares/upload-file'); //import middleware/module buat upload image
+const checkUser = require('./middlewares/auth'); //import middleware/module buat authentication
 
 const port = process.env.SERVER_PORT || 3000;
 // const port = 3000; //port, angkanya assigned bebas, reccomended 4 digits diatas 3000
@@ -64,7 +64,7 @@ app.set('view engine', 'hbs'); //setting view engine, pake hbs
 //modul yang dipake
 // app.use(express.static('assets')); //ngasih tau kalo server menggunakan assigned static kaya css,image,js macem assets, di folder 'assets'
 
-app.use('/assets', express.static(path.join(__dirname, './assets'))); //untuk ngasih tujuan direktori uploads yang ada di multer ke direktori uploads yang ada di folder server
+app.use('/assets', express.static(path.join(__dirname, './assets'))); //untuk ngasih tujuan direktori assets biar bisa akses semua yang ada disitu(mostyle css and image)
 app.use('/uploads', express.static(path.join(__dirname, './uploads'))); //untuk ngasih tujuan direktori uploads yang ada di multer ke direktori uploads yang ada di folder server
 app.use(express.json()); //ngasih tau kalo server menggunaka function json
 app.use(express.urlencoded({ extended: true })); //ngasih tau kalo server menggunakan urlencoded function buat ambil data dari html method kaya post/get. extended:true buat bisa pake nested array object, crucial buat kalo mau pake method post/get
@@ -86,9 +86,10 @@ hbs.registerHelper('eq', (a, b) => a === b); //helper buat if statement, dipake 
 hbs.registerHelper('formatDateToWIB', formatDateToWIB); //assigned function helper buat dipake di html, '{namanya}', modulnya
 hbs.registerHelper('getRelativeTime', getRelativeTime); //assigned function helper buat dipake di html
 hbs.registerHelper('truncate', function (str, len) {
+  //nama 'truncate' bebas bisa dipakein apa aja, jadi bukan assigned function
   //assigned function helper buat dipake di html, ini buat ngedikitin kalimat di blog atau project
   if (str.length > len) {
-    return str.substring(0, len) + `....<a href=/blog/${this.id}>Read more</a>`;
+    return str.substring(0, len) + `<a href=/blog/${this.id}>....Read more</a>`; //jika isi content(str.length) lebih dari length(ditentuin di handlebars), dia akan return 50(misal len 10) pertama dan sisanya '....Read more'
   }
   return str;
 });
@@ -98,9 +99,10 @@ hbs.registerHelper('getDuration', getDuration);
 //registerHelper contain skills
 hbs.registerHelper('containsSkill', function (skillSet, skill) {
   if (Array.isArray(skillSet) && skill) {
+    //Array.isArray berfungsi untuk ngecek apakah 'skillSet' array atau bukan, kalo misal kosong dia ngasih false, kalo array dia ngasih true, '&& skill' ini artinya buat ngecek juga kalo skill ada isinya maka return command dibawah
     return skillSet.includes(skill);
   }
-  return false; // Return false if skillSet is not an array or skill is missing.
+  return false; //Ngasih false jika keduanya tidak terpenuhi(misal skillSet atau skill kosong)
 });
 
 // GET METHOD SEBELUM PAKAI MODUL

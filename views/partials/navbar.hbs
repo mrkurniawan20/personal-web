@@ -134,6 +134,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav gap-4">
         <li class="nav-item">
+          {{!-- eq disini helper yang udah dibuat di server.js --}}
           <a class="nav-link {{#if (eq currentPage 'home')}}active{{/if}}" href="/">Home</a>
         </li>
         <li class="nav-item">
@@ -158,15 +159,14 @@
               Out</button></a>
         </li>
         {{/if}}
-        {{#unless user}}
+        {{!-- {{#unless user}}
         <li class="nav-item m-0">
           <a href="/login"><button type="button" class="btn btn-primary ">Sign in</button></a>
         </li>
-        {{/unless}}
+        {{/unless}} --}}
         <li class="nav-item">
           <a href="/form" class="nav-link {{#if (eq currentPage 'form')}}active{{/if}}" style="padding:0"><button
-              type="button" class="btn btn-dark">CONTACT
-              ME</button></a>
+              type="button" class="btn btn-dark">CONTACT</button></a>
         </li>
       </ul>
     </div>

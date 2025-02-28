@@ -39,7 +39,7 @@
 <!-- BLOG LIST -->
 <hr /> --}}
 
-<h1 class="text-center"><b>BLOGS</b></h1>
+<h1 class="text-center mt-5 mb-5"><b>BLOGS</b></h1>
 {{#if user}}
 <div class="text-center m-5">
   <a class="btn btn-dark" href="addblog">Create Blog</a>
@@ -67,41 +67,42 @@
       <p class='relative-time-blog'>1 day ago</p>
     </div>
   </article> --}}
-
-  {{#each blogs}}
-  <article class='blog-item'>
-    <div class='blog-image'>
-      <img src='{{this.image}}' width='100%' alt='' />
-    </div>
-    <div class='blog-article'>
-      {{!-- kalau di dalam scope each blogs di atas, user tidak dikenal --}}
-      {{#if (eq ../user.id this.authorId)}} {{!apakah ..user.id(user yang login) sama dengan user authorId(yang di
-      blog)}}
-      <div class='blog-item-button text-end'>
-        <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='btn btn-warning'> <span>Edit
-            Blog</span><i class="fas fa-edit"></i></a>
-        <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post"
-          onclick="return submitForm(this, event)">
-          <button onclick="" class='btn btn-danger' type="submit">
-            <span>Delete
-              Blog</span><i class="fa-solid fa-trash"></i></button>
-        </form>
+  <div style="background-color: var(--secondary-color); padding:10px">
+    {{#each blogs}}
+    <article class='blog-item'>
+      <div class='blog-image'>
+        <img src='{{this.image}}' width='100%' alt='' />
       </div>
-      {{/if}}
-      <a href="/blog/{{this.id}}">
-        <h3 class="text-dark mt-3">{{this.title}}</h3>
-      </a>
-      <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.user.name}}</p>
-      <p class="blog-title-desktop">
-        {{{truncate this.content 100}}}
-      </p>
-      <p class="blog-title-mobile">
-        {{{truncate this.content 50}}}
-      </p>
-      <p class='relative-time-blog text-end'>{{getRelativeTime this.createdAt}}</p>
-    </div>
-  </article>
-  {{/each}}
+      <div class='blog-article'>
+        {{!-- kalau di dalam scope each blogs di atas, user tidak dikenal --}}
+        {{#if (eq ../user.id this.authorId)}} {{!apakah ..user.id(user yang login) sama dengan user authorId(yang di
+        blog)}}
+        <div class='blog-item-button text-end'>
+          <a href="/editblog/{{this.id}}  " action="/blog-edit/{{this.id}}" class='btn btn-warning'> <span>Edit
+              Blog</span><i class="fas fa-edit"></i></a>
+          <form style="display:inline" action="/blog/{{this.id}}?_method=DELETE" method="post"
+            onclick="return submitForm(this, event)">
+            <button onclick="" class='btn btn-danger' type="submit">
+              <span>Delete
+                Blog</span><i class="fa-solid fa-trash"></i></button>
+          </form>
+        </div>
+        {{/if}}
+        <a href="/blog/{{this.id}}">
+          <h3 class="text-dark mt-3">{{this.title}}</h3>
+        </a>
+        <p class='datetime'>{{formatDateToWIB this.createdAt}} | {{this.user.name}}</p>
+        <p class="blog-title-desktop">
+          {{{truncate this.content 100}}}
+        </p>
+        <p class="blog-title-mobile">
+          {{{truncate this.content 50}}}
+        </p>
+        <p class='relative-time-blog text-end'>{{getRelativeTime this.createdAt}}</p>
+      </div>
+    </article>
+    {{/each}}
+  </div>
   {{!--
 </section> --}}
 {{!--
